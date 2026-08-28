@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="animations-loader.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Service Booking | Jaspal Singh Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; color: #333; }
+        header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 30px 20px; text-align: center; position: relative; }
+        .home-btn { position: absolute; top: 25px; left: 20px; color: white; text-decoration: none; font-weight: bold; }
+        
+        .container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .form-card { background: white; padding: 35px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .form-card h2 { margin-bottom: 20px; color: #1e3c72; font-size: 1.8rem; text-align: center; }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #444; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+        .input-group textarea { height: 120px; resize: none; }
+        
+        .whatsapp-btn { background: #25D366; color: white; border: none; padding: 14px 20px; width: 100%; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .whatsapp-btn:hover { background: #20ba5a; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Home</a>
+        <h1><i class="fas fa-headset"></i> Quick Service Booking</h1>
+        <p>Connect with Jaspal Singh instantly via WhatsApp</p>
+    </header>
+
+    <div class="container">
+        <div class="form-card">
+            <h2><i class="fab fa-whatsapp" style="color: #25D366;"></i> Book via WhatsApp</h2>
+            <div class="input-group">
+                <label>Your Full Name:</label>
+                <input type="text" id="clientName" placeholder="Enter your name">
+            </div>
+            <div class="input-group">
+                <label>Phone Number:</label>
+                <input type="tel" id="clientPhone" placeholder="Enter your mobile number">
+            </div>
+            <div class="input-group">
+                <label>Select Service Required:</label>
+                <select id="clientService">
+                    <option value="Insurance Policy Enquiry">Insurance Policy (Motor/Health/Term)</option>
+                    <option value="SIP & Investment Planning">SIP & Investment Planning</option>
+                    <option value="IT Technical Support / Repair">IT Technical Support / PC Repair</option>
+                    <option value="General Consultation">General Consultation</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Additional Message / Details:</label>
+                <textarea id="clientMessage" placeholder="Write your requirement here..."></textarea>
+            </div>
+            <button class="whatsapp-btn" onclick="sendToWhatsApp()">
+                <i class="fab fa-whatsapp fa-lg"></i> Send Enquiry to WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            let name = document.getElementById('clientName').value.trim();
+            let phone = document.getElementById('clientPhone').value.trim();
+            let service = document.getElementById('clientService').value;
+            let message = document.getElementById('clientMessage').value.trim();
+
+            if(name === "" || phone === "") {
+                alert("Please enter your Name and Phone Number!");
+                return;
+            }
+
+            // Aapka WhatsApp Number yahan set kar diya gaya hai
+            let myWhatsAppNumber = "919958037734"; 
+
+            let whatsappText = `Hello Jaspal Singh,%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Service:* ${encodeURIComponent(service)}%0A*Message:* ${encodeURIComponent(message)}`;
+
+            let whatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${whatsappText}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>

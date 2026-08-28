@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</div>
+<script src="ticker.js"></script>
+<script src="animations-loader.js" defer></script>
+<!-- SEO Meta Tags -->
+    <meta name="description" content="Jaspal Singh - Authorized Quickinsure Business Partner, IT Support, Risk Management Systems (RMS), and Financial Services including Mutual Funds and IPOs in Connaught Place, Delhi.">
+    <meta name="keywords" content="Jaspal Singh, Quickinsure, IT Support Delhi, RMS Systems, Composite Securities, Mutual Funds, IPO, Share Trading NSE Cash, Insurance Partner Delhi, Connaught Place">
+    <meta name="author" content="Jaspal Singh">
+    
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jaspal Singh - Quickinsure Business Partner & IT Solutions">
+    <meta property="og:description" content="Get instant insurance quotes, expert investment services (Mutual Funds & IPOs), and reliable IT & RMS support in Delhi.">
+    <meta property="og:image" content="slides/1.jpg">
+    <meta property="og:url" content="https://finalphasessolution-hub.github.io/Saini/">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jaspal Singh - Quickinsure Business Partner & IT Solutions">
+    <meta name="twitter:description" content="Authorized Quickinsure Partner, IT Infrastructure, RMS, and Financial & Investment Services.">
+    <meta name="twitter:image" content="slides/1.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaspal Singh - Quickinsure Business Partner & IT Solutions</title>
+    <style>
+        :root { --primary: #f39c12; --primary-hover: #d68910; --dark: #0f172a; --card-bg: #ffffff; --bg: #f8fafc; --text-color: #334155; }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { margin: 0; font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); color: var(--text-color); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+        
+        body.high-contrast { background-color: #000000 !important; color: #ffffff !important; }
+        body.high-contrast .card, body.high-contrast .quote-box, body.high-contrast header, body.high-contrast footer, body.high-contrast .faq-item { background-color: #121212 !important; color: #ffffff !important; border-color: #333 !important; }
+        body.high-contrast p, body.high-contrast span, body.high-contrast div { color: #e2e8f0 !important; }
+
+        /* GROWW STYLE LIVE TICKER TASKBAR */
+        .groww-ticker-bar {
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 1px solid #334155;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .ticker-track {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+            padding-left: 100%;
+        }
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes tickerScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        .ticker-item {
+            display: inline-block;
+            margin-right: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ticker-item span {
+            margin-left: 6px;
+        }
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+
+        #accessibility-bar { background: #1e293b; color: #fff; padding: 6px 30px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; font-size: 13px; border-bottom: 1px solid #334155; }
+        .acc-btn { background: #334155; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+        .acc-btn:hover { background: var(--primary); color: #000; }
+
+        header { background: var(--dark); color: #fff; padding: 18px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 1000; animation: slideDown 0.6s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .logo-area { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .logo-area h2 { margin: 0; color: var(--primary); font-size: 22px; font-weight: 800; letter-spacing: 0.5px; }
+        .badge-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .partner-badge { background: rgba(243, 156, 18, 0.15); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(243, 156, 18, 0.3); animation: pulseBadge 2s infinite; }
+        @keyframes pulseBadge { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        nav a { color: #cbd5e1; text-decoration: none; margin-left: 18px; font-size: 14px; font-weight: 600; transition: color 0.3s, transform 0.2s; display: inline-block; }
+        nav a:hover { color: var(--primary); transform: translateY(-2px); }
+
+        .hero { position: relative; min-height: 520px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('slides/1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; text-align: center; padding: 40px 20px; }
+        .hero-content { max-width: 850px; z-index: 2; animation: fadeInZoom 1s ease-out; }
+        @keyframes fadeInZoom { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        .hero h1 { font-size: 46px; margin-bottom: 20px; color: #fff; font-weight: 800; line-height: 1.2; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 18px; margin-bottom: 30px; color: #94a3b8; }
+        
+        .btn { background: var(--primary); color: #000; padding: 14px 30px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.3s; box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3); position: relative; overflow: hidden; }
+        .btn:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4); }
+
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 25px; }
+        .section-title { text-align: center; font-size: 32px; margin-bottom: 15px; color: var(--dark); font-weight: 800; }
+        .section-subtitle { text-align: center; color: #64748b; margin-bottom: 45px; font-size: 16px; }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s; border-top: 5px solid var(--primary); position: relative; opacity: 0; transform: translateY(30px); }
+        .card.visible { opacity: 1; transform: translateY(0); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .card h3 { margin-top: 0; color: var(--dark); font-size: 22px; font-weight: 700; }
+        .card p { line-height: 1.7; color: #64748b; }
+
+        /* HOVER POPUP STYLES FOR INSURANCE BUTTONS */
+        .insurance-hover-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .insurance-item {
+            position: relative;
+            display: inline-block;
+        }
+        .ins-hover-btn {
+            background: rgba(243, 156, 18, 0.15);
+            color: var(--primary);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .ins-hover-btn:hover {
+            background: var(--primary);
+            color: #000;
+        }
+        .popup-box {
+            visibility: hidden;
+            opacity: 0;
+            width: 260px;
+            background-color: #ffffff;
+            color: #333;
+            text-align: left;
+            border-radius: 8px;
+            padding: 14px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+            border: 1px solid #cbd5e1;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .popup-box::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #ffffff transparent transparent transparent;
+        }
+        .insurance-item:hover .popup-box {
+            visibility: visible;
+            opacity: 1;
+        }
+        .popup-box strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: var(--dark);
+        }
+        .popup-box p {
+            margin: 0;
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .exp-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; transition: padding-left 0.3s; }
+        .exp-item:hover { padding-left: 10px; border-left: 3px solid var(--primary); }
+        .exp-title { font-size: 18px; font-weight: 700; color: var(--dark); }
+        .exp-company { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 5px; }
+
+        .faq-item { background: var(--card-bg); border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); opacity: 0; transform: translateY(20px); transition: all 0.4s; }
+        .faq-item.visible { opacity: 1; transform: translateY(0); }
+        .faq-question { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .faq-answer { font-size: 14px; color: #64748b; margin: 0; line-height: 1.6; }
+
+        .quote-box { background: linear-gradient(145deg, #ffffff, #f1f5f9); border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; max-width: 700px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark); font-size: 14px; }
+        .form-control { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #fff; }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.15); }
+        #quote-result { margin-top: 20px; padding: 15px; background: #dcfce7; color: #166534; border-radius: 8px; font-weight: 600; display: none; }
+
+        #social-float { position: fixed; bottom: 25px; left: 25px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
+        .social-btn { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; }
+        .social-btn:hover { transform: scale(1.15); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+        .sb-call { background: #22c55e; }
+        .sb-whatsapp { background: #25d366; }
+        .sb-facebook { background: #1877f2; }
+        .sb-instagram { background: #e1306c; }
+        .sb-twitter { background: #000000; }
+        .sb-telegram { background: #229ed9; }
+
+        #chat-widget { position: fixed; bottom: 25px; right: 25px; width: 380px; background: #fff; border-radius: 16px; box-shadow: 0 15px 50px rgba(0,0,0,0.25); overflow: hidden; z-index: 2000; display: flex; flex-direction: column; border: 1px solid #e2e8f0; }
+        #chat-header { background: var(--dark); color: #fff; padding: 14px 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--primary); cursor: pointer; }
+        #model-select { background: #1e293b; color: var(--primary); border: 1px solid #475569; padding: 5px 10px; border-radius: 6px; font-size: 12px; outline: none; cursor: pointer; font-weight: 600; }
+        
+        .chat-chips { display: flex; gap: 8px; padding: 10px 14px; background: #f8fafc; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #e2e8f0; }
+        .chip { background: #fff; border: 1px solid #cbd5e1; padding: 5px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; color: #475569; font-weight: 600; }
+        .chip:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        #chat-body { height: 260px; padding: 18px; overflow-y: auto; font-size: 13px; background: #fafafa; display: flex; flex-direction: column; gap: 12px; }
+        .chat-msg { padding: 10px 14px; border-radius: 10px; max-width: 85%; line-height: 1.5; word-break: break-word; }
+        .user-msg { background: #2563eb; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .bot-msg { background: #e2e8f0; color: #1e293b; align-self: flex-start; border-bottom-left-radius: 2px; }
+        
+        #chat-footer { display: flex; border-top: 1px solid #e2e8f0; background: #fff; }
+        #chat-input { flex: 1; padding: 14px; border: none; outline: none; font-size: 13px; }
+        #chat-send { background: var(--primary); color: #000; border: none; padding: 0 22px; cursor: pointer; font-weight: 700; }
+
+        .footer-nav { margin: 15px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-nav a { color: var(--primary); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+        .footer-nav a:hover { color: #fff; text-decoration: underline; }
+
+        footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 35px 20px; margin-top: 80px; font-size: 14px; border-top: 3px solid var(--primary); }
+        footer p { margin: 5px 0; }
+        footer strong { color: #fff; }
+    </style>
+</head>
+<body>
+    <!-- GROWW STYLE LIVE TICKER TASKBAR -->
+    <div class="groww-ticker-bar">
+        <div class="ticker-track">
+            <div class="ticker-item"><strong>SENSEX</strong> <span id="^BSESN" class="positive">73,892.40 (+0.45%)</span></div>
+            <div class="ticker-item"><strong>NIFTY 50</strong> <span id="^NSEI" class="positive">22,419.95 (+0.52%)</span></div>
+            <div class="ticker-item"><strong>RELIANCE</strong> <span id="RELIANCE.NS" class="positive">2,940.50 (+0.80%)</span></div>
+            <div class="ticker-item"><strong>TCS</strong> <span id="TCS.NS" class="negative">4,120.00 (-0.35%)</span></div>
+            <div class="ticker-item"><strong>HDFC BANK</strong> <span id="HDFCBANK.NS" class="positive">1,510.25 (+0.40%)</span></div>
+        </div>
+    </div>
+
+    <script>
+    function fetchGoogleFinanceLiveRates() {
+        const symbols = "^BSESN,^NSEI,RELIANCE.NS,TCS.NS,HDFCBANK.NS";
+        const proxyUrl = "https://api.allorigins.win/raw?url=";
+        const targetUrl = encodeURIComponent(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`);
+
+        fetch(proxyUrl + targetUrl)
+            .then(response => response.json())
+            .then(data => {
+                if(data && data.quoteResponse && data.quoteResponse.result) {
+                    const results = data.quoteResponse.result;
+                    
+                    results.forEach(stock => {
+                        let price = stock.regularMarketPrice ? stock.regularMarketPrice.toLocaleString('en-IN') : 'N/A';
+                        let change = stock.regularMarketChangePercent ? stock.regularMarketChangePercent.toFixed(2) : '0.00';
+                        let isPositive = change >= 0;
+                        
+                        let element = document.getElementById(stock.symbol);
+                        if(element) {
+                            element.innerText = `${price} (${isPositive ? '+' : ''}${change}%)`;
+                            element.className = isPositive ? 'positive' : 'negative';
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching live rates:', error));
+    }
+
+    setInterval(fetchGoogleFinanceLiveRates, 30000);
+    window.onload = fetchGoogleFinanceLiveRates;
+    </script>
+
+    <div id="accessibility-bar">
+        <span>Accessibility:</span>
+        <button class="acc-btn" onclick="increaseFont()">A+</button>
+        <button class="acc-btn" onclick="resetFont()">A</button>
+        <button class="acc-btn" onclick="decreaseFont()">A-</button>
+        <button class="acc-btn" onclick="toggleContrast()">🌓 Contrast / Theme</button>
+    </div>
+
+    <header>
+        <div class="logo-area">
+            <h2>Jaspal Singh</h2>
+            <div class="badge-group">
+                <span class="partner-badge">📈 Investment</span>
+                <span class="partner-badge">🛡️ Insurance</span>
+                <span class="partner-badge">💻 IT Services</span>
+            </div>
+        </div>
+ 
+
+    </style>
+<nav>
+    <a href="#home">Home</a>
+        <a href="dashboard.html" style="color: var(--primary); font-weight: 700;">📊 View Dashboard</a>
+   </nav>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="investment.html" style="color: var(--primary); font-weight: 700;">📈 Investment Hub</a>
+            <a href="#about">About Us</a>
+            <a href="#insurance-page">Insurance</a>
+            <a href="#cv">CV & Profile</a>
+            <a href="#services">Services</a>
+            <a href="#calculator">Get Quote</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div id="social-float" style="transition: opacity 0.3s;">
+        <a href="tel:9958037734" class="social-btn sb-call" title="Call Now">📞</a>
+        <a href="https://wa.me/919958037734?text=Hello%20Jaspal%20Ji,%20I%20want%20to%20know%20more%20about%20your%20services." target="_blank" class="social-btn sb-whatsapp" title="WhatsApp Chat">💬</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn sb-facebook" title="Facebook">f</a>
+        <a href="https://instagram.com" target="_blank" class="social-btn sb-instagram" title="Instagram">📷</a>
+        <a href="https://twitter.com" target="_blank" class="social-btn sb-twitter" title="X (Twitter)">𝕏</a>
+        <a href="https://telegram.org" target="_blank" class="social-btn sb-telegram" title="Telegram">✈</a>
+    </div>
+
+    <div id="home" class="hero">
+        <div class="hero-content">
+            <h1>IT Technician & <span>Financial Partner</span></h1>
+            <p>Jaspal Singh - IT Support, Risk Management Systems (RMS), Insurance & Investments</p>
+            <a href="#insurance-page" class="btn">Explore Insurance Plans</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Dedicated Insurance Page Section with Hover Popups -->
+        <section id="insurance-page">
+            <h2 class="section-title">Fast. Easy. Transparent.</h2>
+            <p class="section-subtitle">This Is How We Compare Insurance Policies</p>
+
+            <!-- Interactive Hover Insurance Buttons -->
+            <div class="insurance-hover-container">
+                <div class="insurance-item">
+                    <span class="ins-hover-btn">🚗 4 Wheeler</span>
+                    <div class="popup-box">
+                        <strong>🚗 4 Wheeler Insurance (कार बीमा)</strong>
+                        <p>थर्ड-पार्टी और कॉम्प्रिहेंसिव प्लान की तुलना करें। एक्सीडेंटल कवर और डैमेज सुरक्षा पाएं।</p>
+                    </div>
+                </div>
+
+                <div class="insurance-item">
+                    <span class="ins-hover-btn">🏍️ Bike</span>
+                    <div class="popup-box">
+                        <strong>🏍️ Bike Insurance (बाइक बीमा)</strong>
+                        <p>अपनी दोपहिया गाड़ी के लिए किफायती दरों पर ऑनलाइन बीमा तुलना व रिन्यूअल।</p>
+                    </div>
+                </div>
+
+                <div class="insurance-item">
+                    <span class="ins-hover-btn">🏥 Health</span>
+                    <div class="popup-box">
+                        <strong>🏥 Health Insurance (स्वास्थ्य बीमा)</strong>
+                        <p>परिवार के लिए मेडिकल इमरजेंसी और कैशलेस क्लेम सुविधा वाले बेस्ट हेल्थ प्लान।</p>
+                    </div>
+                </div>
+
+                <div class="insurance-item">
+                    <span class="ins-hover-btn">✈️ Travel</span>
+                    <div class="popup-box">
+                        <strong>✈️ Travel Insurance (यात्रा बीमा)</strong>
+                        <p>फ्लाइट डिले, बैगेज खोने या मेडिकल इमरजेंसी से सुरक्षा के लिए ट्रैवल प्लान।</p>
+                    </div>
+                </div>
+
+                <div class="insurance-item">
+                    <span class="ins-hover-btn">🚚 Commercial Vehicle</span>
+                    <div class="popup-box">
+                        <strong>🚚 Commercial Vehicle Insurance</strong>
+                        <p>ट्रक, टैक्सी और कमर्शियल गाड़ियों के लिए त्वरित और सुरक्षित बीमा समाधान।</p>
+                    </div>
+                </div>
+
+                <div class="insurance-item">
+                    <span class="ins-hover-btn">🛡️ Life</span>
+                    <div class="popup-box">
+                        <strong>🛡️ Life Insurance (जीवन बीमा)</strong>
+                        <p>परिवार के भविष्य को आर्थिक सुरक्षा देने के लिए बेस्ट टर्म इंश्योरेंस प्लान।</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-grid" style="margin-bottom: 50px;">
+                <div class="card">
+                    <h3>FAST</h3>
+                    <p><strong>The hassle-free way to buy insurance!</strong></p>
+                    <p>Buy your policy in just a few clicks and get it delivered to your email inbox in just a few minutes. Save time, Save money!</p>
+                    <ul style="color: #64748b; padding-left: 20px; font-size: 14px;">
+                        <li>No Paperwork</li>
+                        <li>Get quotes instantly from top insurers</li>
+                        <li>Compare plans and save money by choosing the right plan</li>
+                        <li>Get policy delivered instantly</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>EASY</h3>
+                    <p><strong>The Simple Way to Buy Insurance!</strong></p>
+                    <p>Our in-built algorithms read through the fine print and present the key aspects in an easy-to-understand manner.</p>
+                    <ul style="color: #64748b; padding-left: 20px; font-size: 14px;">
+                        <li>No research required, just compare on Quickinsure platform</li>
+                        <li>No insurance jargon, easy to understand</li>
+                        <li>Impartial insurance advice</li>
+                        <li>Great service and an exceptional experience</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>TRANSPARENT</h3>
+                    <p><strong>The best way to buy insurance!</strong></p>
+                    <p>We are fully transparent in all our dealings. There are no hidden charges. At Quickinsure, we focus on catering to your requirements. We take the privacy and security of your data very seriously. Your data is stored only in government-approved data centres. We are committed to protecting your data and privacy, we neither sell nor share it without your consent.</p>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="font-size: 26px;">Why Quickinsure?</h3>
+            <p class="section-subtitle">When you buy your insurance coverage, you get much more than protection</p>
+            <div class="card-grid" style="margin-bottom: 50px;">
+                <div class="card">
+                    <h3>⭐ Guaranteed Advantages</h3>
+                    <p><strong>Guaranteed Best Prices:</strong> Unbiased Advice for the Benefit of Customers.</p>
+                    <p><strong>100% Reliable:</strong> We operate under the regulatory purview of IRDAI with complete claim support.</p>
+                </div>
+                <div class="card">
+                    <h3>⏱️ Instant Issuance & Support</h3>
+                    <p><strong>Policy Issuance in just a few Minutes:</strong> No more paperwork. Buy insurance online – instant and paperless with Quickinsure.</p>
+                    <p><strong>Dedicated Support Team:</strong> Available 24/7 for expert assistance during policy purchase or claim settlement!</p>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="font-size: 26px;">How does Quickinsure Work?</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Provide Complete Details</h3>
+                    <p>Fill in all required details and get quotes from top-ranked insurance companies instantaneously.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Compare Quotes and Select the Best Insurance Policy</h3>
+                    <p>Review quotes received from top insurers and choose the policy that best meets your needs and budget.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Transfer Premium Amount and Relax</h3>
+                    <p>As soon as you transfer the premium amount, you will receive the policy document directly in your email inbox.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" style="margin-top: 80px;">
+            <h2 class="section-title">About Us</h2>
+            <p class="section-subtitle">Empowering digital infrastructure, trading investments, and secure insurance solutions</p>
+            <div class="card" style="margin-bottom: 30px;">
+                <h3>Welcome to Jaspal Singh Enterprise Platform</h3>
+                <p>We specialize in providing high-performance IT infrastructure support, robust Risk Management Systems (RMS) and expert brokerage/investment services through <strong>Composite Securities Limited</strong> (Mutual Funds, IPOs, Share Trading on NSE - Cash Segment Only), alongside trusted insurance solutions as an authorized <strong>Quickinsure Business Partner</strong>.</p>
+                <p><strong>Headquarters / Office:</strong> Connaught Place, Delhi</p>
+            </div>
+        </section>
+
+        <section id="cv" style="margin-top: 80px;">
+            <h2 class="section-title">Curriculum Vitae</h2>
+            <p class="section-subtitle">Professional Background & Experience</p>
+            
+            <div class="card" style="margin-bottom: 30px;">
+                <h3>Career Summary</h3>
+                <p>Highly motivated IT and financial markets professional with over 7 years of rich experience in IT support, RMS, investment operations, share trading (NSE Cash Segment), Mutual Funds, IPO management, and client relationship management.</p>
+                <p><strong>Contact:</strong> +91 9958037734 | <strong>Email:</strong> jasspunjab3088@gmail.com</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 30px;">
+                <h3>Professional Experience</h3>
+                <div class="exp-item">
+                    <div class="exp-title">IT Technician / RMS & Investment Expert</div>
+                    <div class="exp-company">Composite Securities Limited</div>
+                    <div class="exp-date">October 2025 - Present</div>
+                    <p>Managing IT support, Risk Management Systems (RMS), share trading, NSE cash segment workflows, IPO processing, and Mutual Fund distributions.</p>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-title">IT Technician & Brokerage Operations (RMS)</div>
+                    <div class="exp-company">KK Securities Limited & Go Trade India, Connaught Place</div>
+                    <div class="exp-date">2017 - October 2025</div>
+                    <p>Handled robust IT support, market analysis, stock trading, IPO management, mutual fund operations, and cash segment execution.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" style="margin-top: 80px;">
+            <h2 class="section-title">Core Services</h2>
+            <p class="section-subtitle">Tailored Solutions for Wealth, Business & Security</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📈 Investment & Stock Broking</h3>
+                    <p>Expert assistance through Composite Securities Limited for <strong>Mutual Funds, IPOs, Share Trading, NSE, and Cash Segment Only</strong> investments.</p>
+                </div>
+                <div class="card">
+                    <h3>🛡️ Insurance Policies</h3>
+                    <p>Authorized Quickinsure Business Partner offering comprehensive coverage including 4 Wheeler, Bike, Health, Travel, Commercial Vehicle, and Life insurance.</p>
+                </div>
+                <div class="card">
+                    <h3>💻 IT & RMS Solutions</h3>
+                    <p>End-to-end IT infrastructure maintenance, Risk Management Services (RMS), and resilient backend enterprise administration.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="faq" style="margin-top: 80px;">
+            <h2 class="section-title">Frequently Asked Questions (FAQ)</h2>
+            <p class="section-subtitle">Quick answers regarding our financial, IT, and insurance services</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">Q1. What types of insurance policies can I compare and buy?</div>
+                    <div class="faq-answer">You can seamlessly compare and buy 4 Wheeler, Bike, Health, Travel, Commercial Vehicle, and Life insurance policies with instant email delivery through Quickinsure.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q2. What investment and trading services do you offer?</div>
+                    <div class="faq-answer">As an associate of Composite Securities Limited, we facilitate Mutual Funds, IPO applications, and Share Trading on the NSE (Cash Segment Only).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q3. Where is the office located?</div>
+                    <div class="faq-answer">Our physical operations are based out of Connaught Place, Delhi.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" style="margin-top: 80px;">
+            <h2 class="section-title">Quick Quote & Inquiry Simulator</h2>
+            <p class="section-subtitle">Connect with Jaspal Singh instantly for customized insurance quotes or investments</p>
+            <div class="quote-box">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="q-name" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Select Insurance / Service Requirement</label>
+                    <select id="q-service" class="form-control">
+                        <option value="4 Wheeler Insurance">4 Wheeler Insurance</option>
+                        <option value="Bike Insurance">Bike Insurance</option>
+                        <option value="Health Insurance">Health Insurance</option>
+                        <option value="Travel Insurance">Travel Insurance</option>
+                        <option value="Commercial Vehicle Insurance">Commercial Vehicle Insurance</option>
+                        <option value="Life Insurance">Life Insurance</option>
+                        <option value="Share Trading / NSE Cash / IPO">Share Trading (NSE Cash) / IPO / Mutual Funds</option>
+                        <option value="IT Infrastructure & RMS">IT Infrastructure & RMS Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone / WhatsApp Number</label>
+                    <input type="text" id="q-phone" class="form-control" placeholder="Enter 10-digit mobile number">
+                </div>
+                <button type="button" id="submit-quote" class="btn" style="width: 100%;">Submit Inquiry</button>
+                <div id="quote-result"></div>
+            </div>
+        </section>
+
+        <section id="contact" style="margin-top: 80px;">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">Available PAN India for immediate assistance</p>
+            <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <h3>Jaspal Singh</h3>
+                <p><strong>Business Partner:</strong> Quickinsure</p>
+                <p><strong>Phone / WhatsApp:</strong> +91 9958037734</p>
+                <p><strong>Email:</strong> jasspunjab3088@gmail.com</p>
+                <p><strong>Office:</strong> Connaught Place, Delhi</p>
+                <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="tel:9958037734" class="btn" style="padding: 10px 20px; font-size: 13px;">📞 Call Now</a>
+                    <a href="https://wa.me/919958037734" target="_blank" class="btn" style="background: #25d366; color:#fff; padding: 10px 20px; font-size: 13px;">💬 WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="chat-widget">
+        <div id="chat-header" onclick="toggleChatBody()">
+            <span id="chat-title">Enterprise AI Assistant</span>
+            <select id="model-select" onclick="event.stopPropagation()">
+                <option value="llama3">llama3</option>
+                <option value="mistral">mistral</option>
+                <option value="phi3">phi3</option>
+            </select>
+        </div>
+        <div id="chat-container-collapsible">
+            <div class="chat-chips">
+                <div class="chip" onclick="sendChip('Motor Insurance Quote')">🚗 Motor Insurance</div>
+                <div class="chip" onclick="sendChip('Health Insurance Plans')">🏥 Health Insurance</div>
+                <div class="chip" onclick="sendChip('Share Trading & IPO details')">📈 Share Trading</div>
+            </div>
+            <div id="chat-body">
+                <div class="chat-msg bot-msg">Namaste! Main Jaspal Singh ka enterprise AI assistant hu. Investment, Insurance ya IT services ke baare me kya help chahiye?</div>
+            </div>
+            <div id="chat-footer">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="chat-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-nav">
+            <a href="tools.html">Tools Hub</a>
+            <a href="contact.html">WhatsApp Booking</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <p>&copy; 2015 <strong>Jaspal Singh</strong> | All Rights Reserved.</p>
+        <p>Phone: +91 9958037734 | Email: jasspunjab3088@gmail.com</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let currentFontSize = 100;
+        function increaseFont() {
+            if(currentFontSize < 140) {
+                currentFontSize += 10;
+                document.body.style.fontSize = currentFontSize + '%';
+            }
+        }
+        function decreaseFont() {
+            if(currentFontSize > 85) {
+                currentFontSize -= 10;
+                document.body.style.fontSize = currentFontSize + '%';
+            }
+        }
+        function resetFont() {
+            currentFontSize = 100;
+            document.body.style.fontSize = '100%';
+        }
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        function toggleChatBody() {
+            $('#chat-container-collapsible').slideToggle(300);
+        }
+
+        function sendChip(text) {
+            $('#chat-input').val(text);
+            sendMessage();
+        }
+
+        $(document).ready(function(){
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            $('.card, .faq-item').each(function() {
+                observer.observe(this);
+            });
+
+            $('#submit-quote').click(function(){
+                const name = $('#q-name').val().trim();
+                const service = $('#q-service').val();
+                const phone = $('#q-phone').val().trim();
+
+                if(!name || !phone) {
+                    alert('Please enter both your name and phone number.');
+                    return;
+                }
+
+                $.ajax({
+                    url: 'https://jaspalsingh.serveousercontent.com/api/quote',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ name, service, phone }),
+                    success: function(res) {
+                        $('#quote-result').text(res.message).fadeIn();
+                        $('#q-name').val('');
+                        $('#q-phone').val('');
+                    },
+                    error: function() {
+                        alert('Error submitting inquiry. Please call Jaspal directly at +91 9958037734.');
+                    }
+                });
+            });
+
+            $('#chat-send').click(sendMessage);
+            $('#chat-input').keypress(function(e) {
+                if(e.which == 13) sendMessage();
+            });
+
+            function sendMessage() {
+                const text = $('#chat-input').val().trim();
+                const selectedModel = $('#model-select').val();
+                if(!text) return;
+
+                $('#chat-body').append(`<div class="chat-msg user-msg">${text}</div>`);
+                $('#chat-input').val('');
+                $('#chat-body').scrollTop($('#chat-body')[0].scrollHeight);
+
+                const loadingId = 'loading-' + Date.now();
+                $('#chat-body').append(`<div id="${loadingId}" class="chat-msg bot-msg" style="color: #64748b;">AI is processing...</div>`);
+                $('#chat-body').scrollTop($('#chat-body')[0].scrollHeight);
+
+                $.ajax({
+                    url: 'https://jaspalsingh.serveousercontent.com/api/chat',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: text, model: selectedModel }),
+                    success: function(res) {
+                        $('#' + loadingId).remove();
+                        streamText(res.reply);
+                    },
+                    error: function() {
+                        $('#' + loadingId).remove();
+                        $('#chat-body').append(`<div class="chat-msg bot-msg">Connection error. Please call Jaspal directly at +91 9958037734.</div>`);
+                        $('#chat-body').scrollTop($('#chat-body')[0].scrollHeight);
+                    }
+                });
+            }
+
+            function streamText(fullText) {
+                const msgId = 'msg-' + Date.now();
+                $('#chat-body').append(`<div id="${msgId}" class="chat-msg bot-msg"></div>`);
+                let i = 0;
+                function typeWriter() {
+                    if (i < fullText.length) {
+                        $('#' + msgId).text(fullText.substring(0, i + 1));
+                        i++;
+                        $('#chat-body').scrollTop($('#chat-body')[0].scrollHeight);
+                        setTimeout(typeWriter, 12);
+                    }
+                }
+                typeWriter();
+            }
+        });
+    </script>
+    <div style="position: fixed; bottom: 0; left: 0; width: 100%; background: #1e3c72; color: white; text-align: center; padding: 10px; font-weight: bold; z-index: 9998; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <span>Need Quick Assistance? Connect with Jaspal Singh Instantly!</span>
+        <a href="contact.html" style="background: #25D366; color: white; padding: 5px 15px; border-radius: 20px; text-decoration: none; margin-left: 10px; font-size: 0.9rem;">Book Now</a>
+   
+    <script>
+        function toggleSidebar(){
+            var s = document.querySelectorAll('.social-sidebar, .floating-sidebar, .side-buttons');
+            s.forEach(function(el){
+                el.style.display = el.style.display == 'none' ? 'flex' : 'none';
+            });
+        }
+    </script>
+<script>
+        function toggleSidebar(){
+            var s = document.querySelectorAll('.social-sidebar, .floating-sidebar, .side-buttons');
+            s.forEach(function(el){
+                el.style.display = el.style.display == 'none' ? 'flex' : 'none';
+            });
+        }
+    </script>
+
+    <!-- YAHAN BILKUL NICHE FOOTER PASTE KRNA HAI -->
+    <footer style="background: #222; color: #fff; text-align: center; padding: 25px 15px; margin-top: 40px; font-family: Arial, sans-serif;">
+        <p style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold;">Quick Links</p>
+        <div style="margin-bottom: 15px;">
+            <a href="index.html" style="color: #4da6ff; margin: 0 12px; text-decoration: none;">Home</a> |
+            <a href="services.html" style="color: #4da6ff; margin: 0 12px; text-decoration: none;">Services</a> |
+            <a href="movies.html" style="color: #4da6ff; margin: 0 12px; text-decoration: none;">Movies Hub</a> |
+            <a href="Discussion.html" style="color: #4da6ff; margin: 0 12px; text-decoration: none;">Discussion & Guide</a> |
+            <a href="testing.html" style="color: #4da6ff; margin: 0 12px; text-decoration: none;">Smart Form</a> |
+            <a href="contact.html" style="color: #4da6ff; margin: 0 12px; text-decoration: none;">Contact</a>
+        </div>
+        <p style="margin: 0; font-size: 14px; color: #aaa;">&copy; Jaspal Singh. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+</body>
+</html>

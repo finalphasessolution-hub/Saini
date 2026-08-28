@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Submit Form</title>
+    <style>
+        /* General Styling */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            padding: 0; 
+            background-color: #2c3e50;
+            color: #fff; 
+            text-align: center;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* AI & Utility Buttons */
+        .ai-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .ai-buttons button, #selfie-button, #theme-toggle {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .ai-buttons button:hover, #selfie-button:hover, #theme-toggle:hover {
+            background-color: #16a085;
+            transform: scale(1.1);
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Selfie Section */
+        .selfie-container {
+            margin-top: 20px;
+        }
+
+        video, canvas, #saved-selfie {
+            display: none;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        #saved-selfie {
+            display: block;
+            width: 200px;
+            height: auto;
+            margin: auto;
+            border: 3px solid white;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #181818;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Smart Submit Form</h1>
+
+    <!-- AI Buttons -->
+    <div class="ai-buttons" id="button-container">
+        <button data-url="https://chat.openai.com/">ChatGPT</button>
+        <button data-url="https://gemini.google.com/">Gemini AI</button>
+        <button data-url="https://copilot.microsoft.com/">Copilot</button>
+        <button data-url="https://www.google.com/">Google Search</button>
+        <button data-url="https://weather.com/">Weather</button>
+        <button data-url="https://news.google.com/">News</button>
+        <button id="theme-toggle">Toggle Dark Mode</button>
+    </div>
+    
+    <div class="form-container">
+        <iframe id="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLSdV2Zv1MZl3T-lCe6HuxM8bgMUwYA3LgR_rH0RxUOaQiY6MYA/viewform?embedded=true" loading="lazy"></iframe>
+    </div>
+
+    <!-- Live Selfie Capture Section -->
+    <div class="selfie-container">
+        <button id="selfie-button">📸 Take a Selfie</button>
+        <video id="video" width="320" height="240" autoplay></video>
+        <canvas id="canvas" width="320" height="240"></canvas>
+        <img id="saved-selfie" src="" alt="Saved Selfie">
+    </div>
+
+    <script>
+        // Button Click Tracking & Adaptive Learning
+        document.querySelectorAll('.ai-buttons button').forEach(button => {
+            button.addEventListener('click', function() {
+                let url = this.getAttribute("data-url");
+                window.open(url, "_blank");
+
+                // Track Clicks & Sort Buttons Based on Popularity
+                let clicks = JSON.parse(localStorage.getItem("buttonClicks")) || {};
+                clicks[url] = (clicks[url] || 0) + 1;
+                localStorage.setItem("buttonClicks", JSON.stringify(clicks));
+
+                updateButtonOrder();
+            });
+        });
+
+        function updateButtonOrder() {
+            let clicks = JSON.parse(localStorage.getItem("buttonClicks")) || {};
+            let container = document.getElementById("button-container");
+            let buttons = Array.from(container.children);
+
+            buttons.sort((a, b) => (clicks[b.getAttribute("data-url")] || 0) - (clicks[a.getAttribute("data-url")] || 0));
+            buttons.forEach(btn => container.appendChild(btn));
+        }
+
+        // Apply Learning on Page Load
+        updateButtonOrder();
+
+        // Theme Toggle & Auto-Save Preference
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+        });
+
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+
+        // Selfie Capture Functionality
+        document.getElementById("selfie-button").addEventListener("click", function() {
+            let video = document.getElementById("video");
+            let canvas = document.getElementById("canvas");
+            let context = canvas.getContext("2d");
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.style.display = "block";
+
+                    setTimeout(() => {
+                        context.drawImage(video, 0, 0, 320, 240);
+                        video.style.display = "none";
+                        canvas.style.display = "block";
+
+                        stream.getTracks().forEach(track => track.stop());
+
+                        let imageData = canvas.toDataURL("image/png");
+                        localStorage.setItem("savedSelfie", imageData);
+                        document.getElementById("saved-selfie").src = imageData;
+                        document.getElementById("saved-selfie").style.display = "block";
+                    }, 3000);
+                })
+                .catch(error => {
+                    alert("Camera access denied!");
+                    console.error("Error accessing camera: ", error);
+                });
+        });
+
+        // Load Saved Selfie
+        if (localStorage.getItem("savedSelfie")) {
+            document.getElementById("saved-selfie").src = localStorage.getItem("savedSelfie");
+            document.getElementById("saved-selfie").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
