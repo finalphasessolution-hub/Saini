@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="animations-loader.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Tool & PDF Hub | Jaspal Singh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f2f5; color: #333; }
+        header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 30px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        
+        .filter-container { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; padding: 0 20px; }
+        .filter-btn { padding: 10px 25px; border: none; border-radius: 25px; background: #fff; color: #1e3c72; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 1rem; }
+        .filter-btn:hover, .filter-btn.active { background: #1e3c72; color: #fff; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 5%; max-width: 1300px; margin: 0 auto 50px auto; }
+        
+        .tool-card { background: white; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; display: none; }
+        .tool-card.show { display: block; }
+        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        
+        .tool-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .ai-icon { color: #8a2be2; }
+        .pdf-icon { color: #e74c3c; }
+        .web-icon { color: #2563eb; }
+        .calc-icon { color: #27ae60; }
+        
+        .tool-card h3 { margin-bottom: 10px; font-size: 1.3rem; color: #222; }
+        .tool-card p { font-size: 0.9rem; color: #666; margin-bottom: 20px; height: 45px; overflow: hidden; }
+        .btn-use { display: inline-block; padding: 10px 20px; background: #1e3c72; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; }
+        .btn-use:hover { background: #2a5298; }
+
+        .home-btn { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
+        .home-btn i { margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <h1><i class="fas fa-toolbox"></i> Enterprise Tool & PDF Hub</h1>
+        <p>Complete suite of AI Assistants, Financial Calculators, and Advanced PDF Workflows</p>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterTools('all')">All Tools</button>
+        <button class="filter-btn" onclick="filterTools('ai')">AI Tools</button>
+        <button class="filter-btn" onclick="filterTools('calc')">Calculators</button>
+        <button class="filter-btn" onclick="filterTools('pdf')">PDF Workflows</button>
+        <button class="filter-btn" onclick="filterTools('search')">Search & Web</button>
+    </div>
+
+    <div class="tools-grid">
+<div class="tool-card contact show"><i class="fab fa-whatsapp tool-icon" style="color: #25D366;"></i><h3>WhatsApp Booking</h3><p>Book insurance, investment, or IT services instantly via WhatsApp.</p><a href="contact.html" class="btn-use" style="background: #25D366;">Open Booking</a></div>
+        
+        <!-- CALCULATORS -->
+        <div class="tool-card calc show">
+            <i class="fas fa-calculator tool-icon calc-icon"></i>
+            <h3>Financial Calculators</h3>
+            <p>Calculate your SIP returns and Loan EMIs instantly.</p>
+            <a href="calculators.html" class="btn-use" style="background: #27ae60;">Open Calculators</a>
+        </div>
+
+        <!-- AI TOOLS -->
+        <div class="tool-card ai show">
+            <i class="fas fa-comments tool-icon ai-icon"></i>
+            <h3>ChatGPT (OpenAI)</h3>
+            <p>World's leading conversational AI for content, coding, and queries.</p>
+            <a href="https://chatgpt.com" target="_blank" class="btn-use">Open ChatGPT</a>
+        </div>
+
+        <div class="tool-card ai show">
+            <i class="fas fa-sparkles tool-icon ai-icon"></i>
+            <h3>Google Gemini</h3>
+            <p>Google's advanced multimodal AI assistant for text and analysis.</p>
+            <a href="https://gemini.google.com" target="_blank" class="btn-use">Open Gemini</a>
+        </div>
+
+        <!-- SEARCH TOOLS -->
+        <div class="tool-card search show">
+            <i class="fas fa-camera-retro tool-icon web-icon"></i>
+            <h3>Google Image Search</h3>
+            <p>Search the web using images or find high-quality visuals instantly.</p>
+            <a href="https://images.google.com" target="_blank" class="btn-use">Open Search</a>
+        </div>
+
+        <div class="tool-card search show">
+            <i class="fas fa-eye tool-icon web-icon"></i>
+            <h3>Google Lens</h3>
+            <p>Identify objects, plants, or translate text via images.</p>
+            <a href="https://lens.google.com" target="_blank" class="btn-use">Open Lens</a>
+        </div>
+
+        <!-- PDF WORKFLOWS (ILOVEPDF DIRECT LINKS) -->
+        <div class="tool-card pdf show">
+            <i class="fas fa-object-group tool-icon pdf-icon"></i>
+            <h3>Merge PDF</h3>
+            <p>Combine PDFs in the order you want with the easiest PDF merger.</p>
+            <a href="https://www.ilovepdf.com/merge_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-cut tool-icon pdf-icon"></i>
+            <h3>Split PDF</h3>
+            <p>Separate one page or a whole set into independent PDF files.</p>
+            <a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-compress tool-icon pdf-icon"></i>
+            <h3>Compress PDF</h3>
+            <p>Reduce file size while optimizing for maximal PDF quality.</p>
+            <a href="https://www.ilovepdf.com/compress_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-file-word tool-icon pdf-icon"></i>
+            <h3>PDF to Word</h3>
+            <p>Easily convert your PDF files into editable DOC and DOCX documents.</p>
+            <a href="https://www.ilovepdf.com/pdf_to_word" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-file-powerpoint tool-icon pdf-icon"></i>
+            <h3>PDF to PowerPoint</h3>
+            <p>Turn your PDF files into editable PPT and PPTX slideshows.</p>
+            <a href="https://www.ilovepdf.com/pdf_to_powerpoint" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-file-excel tool-icon pdf-icon"></i>
+            <h3>PDF to Excel</h3>
+            <p>Pull data straight from PDFs into Excel spreadsheets in seconds.</p>
+            <a href="https://www.ilovepdf.com/pdf_to_excel" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-file-alt tool-icon pdf-icon"></i>
+            <h3>Word to PDF</h3>
+            <p>Make DOC and DOCX files easy to read by converting them to PDF.</p>
+            <a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-file-image tool-icon pdf-icon"></i>
+            <h3>PDF to JPG</h3>
+            <p>Convert each PDF page into a JPG or extract all images.</p>
+            <a href="https://www.ilovepdf.com/pdf_to_jpg" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-images tool-icon pdf-icon"></i>
+            <h3>JPG to PDF</h3>
+            <p>Convert JPG images to PDF in seconds with custom orientation.</p>
+            <a href="https://www.ilovepdf.com/jpg_to_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-signature tool-icon pdf-icon"></i>
+            <h3>Sign PDF</h3>
+            <p>Sign yourself or request electronic signatures from others securely.</p>
+            <a href="https://www.ilovepdf.com/sign_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-stamp tool-icon pdf-icon"></i>
+            <h3>Watermark PDF</h3>
+            <p>Stamp an image or text over your PDF with custom transparency.</p>
+            <a href="https://www.ilovepdf.com/pdf_watermark" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-redo tool-icon pdf-icon"></i>
+            <h3>Rotate PDF</h3>
+            <p>Rotate your PDFs the way you need, multiple at once.</p>
+            <a href="https://www.ilovepdf.com/rotate_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-lock-open tool-icon pdf-icon"></i>
+            <h3>Unlock PDF</h3>
+            <p>Remove PDF password security to use your documents freely.</p>
+            <a href="https://www.ilovepdf.com/unlock_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-lock tool-icon pdf-icon"></i>
+            <h3>Protect PDF</h3>
+            <p>Protect PDF files with a password and encrypt documents.</p>
+            <a href="https://www.ilovepdf.com/protect_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-tasks tool-icon pdf-icon"></i>
+            <h3>Organize PDF</h3>
+            <p>Sort pages of your PDF, delete pages or add new pages easily.</p>
+            <a href="https://www.ilovepdf.com/organize_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-tools tool-icon pdf-icon"></i>
+            <h3>Repair PDF</h3>
+            <p>Repair a damaged PDF and recover data from corrupt files.</p>
+            <a href="https://www.ilovepdf.com/repair-pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-sort-numeric-down tool-icon pdf-icon"></i>
+            <h3>Page Numbers</h3>
+            <p>Add page numbers into PDFs with custom positions and fonts.</p>
+            <a href="https://www.ilovepdf.com/add_pdf_page_number" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+        <div class="tool-card pdf show">
+            <i class="fas fa-crop tool-icon pdf-icon"></i>
+            <h3>Crop PDF</h3>
+            <p>Crop margins of PDF documents or select specific areas.</p>
+            <a href="https://www.ilovepdf.com/crop_pdf" target="_blank" class="btn-use">Use Tool</a>
+        </div>
+
+    </div>
+
+    <script>
+        function filterTools(category) {
+            let btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.add('show');
+                } else {
+                    if (card.classList.contains(category)) {
+                        card.classList.add('show');
+                    } else {
+                        card.classList.remove('show');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -6,3 +6,9 @@ node_modules/
 *.mp4
 *.zip
 *.rar
+
+movies/*.mkv
+movies/*.mp4
+*.mkv
+*.mp4
+node_modules/
