@@ -9,10 +9,10 @@
 
   // CSS
   const css = `
-  #jaspal-chat-btn{position:fixed;bottom:20px;right:20px;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none;box-shadow:0 8px 24px rgba(30,64,175,.4);cursor:pointer;z-index:999999;display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform .2s}
+  #jaspal-chat-btn{position:fixed;bottom:20px;right:20px;left:auto;left:auto;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none;box-shadow:0 8px 24px rgba(30,64,175,.4);cursor:pointer;z-index:999999;display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform .2s}
   #jaspal-chat-btn:hover{transform:scale(1.08)}
   #jaspal-chat-btn .ai-badge{position:absolute;top:-4px;right:-4px;background:#f97316;color:#fff;font-size:10px;font-weight:800;padding:2px 6px;border-radius:10px}
-  #jaspal-chat-win{position:fixed;bottom:90px;right:20px;width:360px;max-width:calc(100vw - 40px);height:480px;background:#fff;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,.18);z-index:999999;display:none;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto}
+  #jaspal-chat-win{position:fixed;bottom:90px;right:20px;left:auto;width:360px;max-width:calc(100vw - 40px);height:480px;background:#fff;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,.18);z-index:999999;display:none;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto}
   #jaspal-chat-win.open{display:flex}
   .jch-head{background:linear-gradient(135deg,#0f172a,#1e40af);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
   .jch-head b{font-size:14px} .jch-head small{opacity:.8;font-size:11px}
@@ -106,5 +106,39 @@
   input.onkeydown=e=>{if(e.key==='Enter') send()};
   win.querySelectorAll('.jch-quick button').forEach(b=>b.onclick=()=>{input.value=b.dataset.q; send();});
 
+  
+  // Auto side-by-side fix for old Quick Chat
+  try{
+    const oldBtns = document.querySelectorAll('[id*="quick"], [class*="quick-chat"], #chat-widget, button[aria-label*="Chat"]');
+    oldBtns.forEach(b=>{
+      if(b.id!=='jaspal-chat-btn' && b.id!=='jaspal-chat-win'){
+        const s = window.getComputedStyle(b);
+        if(s.position==='fixed' && s.bottom && parseInt(s.bottom)<100){
+          b.style.right='90px';
+          b.style.bottom='20px';
+          b.style.zIndex='999998';
+        }
+      }
+    });
+  }catch(e){}
+
+  
+  // FINAL: Left Quick Chat, Right AI+LIVE - force positions
+  setTimeout(()=>{
+    try{
+      const oldWidgets = document.querySelectorAll('div');
+      oldWidgets.forEach(div=>{
+        if(div.textContent.includes('Quick Chat') && div.style.position==='fixed' || (div.innerHTML.includes('Chat on WhatsApp') && div.parentElement?.style?.position==='fixed')){
+          let target = div;
+          while(target && target.style.position!=='fixed' && target.parentElement) target=target.parentElement;
+          if(target && target.id!=='jaspal-chat-btn' && target.id!=='jaspal-chat-win'){
+            target.style.right='100px';
+            target.style.bottom='20px';
+            target.style.left='auto';
+          }
+        }
+      });
+    }catch(e){}
+  }, 1500);
   console.log('Jaspal Ollama Chat loaded - Model:', MODEL, 'Phone:', PHONE);
 })();
