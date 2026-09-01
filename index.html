@@ -24,5 +24,33 @@ Error generating stack: `+u.message+`
 </script>
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
   
+
+<script>
+// Real social links patch for Jass
+(function(){
+ const map=[
+  {k:'facebook', url:'https://www.facebook.com/jass.kalwan.2025'},
+  {k:'instagram', url:'https://www.instagram.com/jass_kalwan_wala/'},
+  {k:'linkedin', url:'https://www.linkedin.com/in/jasssaini/'},
+  {k:'youtube', url:'https://www.youtube.com/@Daiviksainikalwan'}
+ ];
+ document.querySelectorAll('a').forEach(a=>{
+   const txt=(a.textContent+a.href).toLowerCase();
+   map.forEach(m=>{ if(txt.includes(m.k)){ a.href=m.url; a.target='_blank'; } });
+ });
+ const dock=document.getElementById('social-dock');
+ if(dock){
+  const anchors=dock.querySelectorAll('a');
+  anchors.forEach(a=>{
+    const t=(a.textContent+a.getAttribute('href','')).toLowerCase();
+    if(t.includes('face')) a.href='https://www.facebook.com/jass.kalwan.2025';
+    if(t.includes('insta')) a.href='https://www.instagram.com/jass_kalwan_wala/';
+    if(t.includes('link')) a.href='https://www.linkedin.com/in/jasssaini/';
+    if(t.includes('you')) a.href='https://www.youtube.com/@Daiviksainikalwan';
+    a.target='_blank';
+  });
+ }
+})();
+</script>
 </body>
 </html>
