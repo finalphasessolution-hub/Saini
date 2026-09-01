@@ -6,7 +6,7 @@
 const http = require('http');
 
 const OLLAMA_URL = 'http://127.0.0.1:11434/api/chat';
-const MODEL = 'llama3.2';
+const MODEL = 'llama3.1:8b'; // POWERFUL 4.9GB - ChatGPT-like, Mistral also available
 const PORT = 3000;
 
 const SYSTEM_PROMPT = `You are Jaspal Singh's AI Assistant - IRDAI Certified Insurance & Investment Expert at Connaught Place, Delhi.

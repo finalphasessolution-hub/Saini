@@ -3,16 +3,16 @@
 (function(){
   const cfg = document.currentScript?.dataset || {};
   const PHONE = cfg.phone || '919958037734';
-  const MODEL = cfg.model || 'llama3.2';
+  const MODEL = cfg.model || 'llama3.1:8b'; // POWERFUL ChatGPT-like 4.9GB
   const BRIDGE = cfg.bridge || 'http://localhost:3000/api/chat'; // or direct http://localhost:11434/api/chat if OLLAMA_ORIGINS=*
   const DIRECT = cfg.direct || 'http://localhost:11434/api/chat';
 
   // CSS
   const css = `
-  #jaspal-chat-btn{position:fixed;bottom:20px;right:20px;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none;box-shadow:0 8px 24px rgba(30,64,175,.4);cursor:pointer;z-index:999999;display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform .2s}
+  #jaspal-chat-btn{position:fixed;bottom:20px;right:20px;left:auto;left:auto;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none;box-shadow:0 8px 24px rgba(30,64,175,.4);cursor:pointer;z-index:999999;display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform .2s}
   #jaspal-chat-btn:hover{transform:scale(1.08)}
   #jaspal-chat-btn .ai-badge{position:absolute;top:-4px;right:-4px;background:#f97316;color:#fff;font-size:10px;font-weight:800;padding:2px 6px;border-radius:10px}
-  #jaspal-chat-win{position:fixed;bottom:90px;right:20px;width:360px;max-width:calc(100vw - 40px);height:480px;background:#fff;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,.18);z-index:999999;display:none;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto}
+  #jaspal-chat-win{position:fixed;bottom:90px;right:20px;left:auto;width:360px;max-width:calc(100vw - 40px);height:480px;background:#fff;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,.18);z-index:999999;display:none;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto}
   #jaspal-chat-win.open{display:flex}
   .jch-head{background:linear-gradient(135deg,#0f172a,#1e40af);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
   .jch-head b{font-size:14px} .jch-head small{opacity:.8;font-size:11px}
@@ -29,12 +29,12 @@
   const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
 
   // HTML
-  const btn = document.createElement('button'); btn.id='jaspal-chat-btn'; btn.innerHTML='ðŸ’¬<span class="ai-badge">AI+LIVE</span>';
+  const btn = document.createElement('button'); btn.id='jaspal-chat-btn'; btn.innerHTML='💬<span class="ai-badge">AI+LIVE</span>';
   const win = document.createElement('div'); win.id='jaspal-chat-win';
   win.innerHTML=`
-    <div class="jch-head"><div><b>ðŸ’¬ Jaspal AI Assistant</b><br><small><span style="display:inline-block;width:8px;height:8px;background:#22c55e;border-radius:50%;margin-right:4px"></span>Live â€¢ AI + Human â€¢ 2 min reply</small></div><button id="jch-close" style="background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer">âœ•</button></div>
+    <div class="jch-head"><div><b>💬 Jaspal AI Assistant</b><br><small><span style="display:inline-block;width:8px;height:8px;background:#22c55e;border-radius:50%;margin-right:4px"></span>Live • AI + Human • 2 min reply</small></div><button id="jch-close" style="background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer">✕</button></div>
     <div class="jch-body" id="jch-body">
-      <div class="jch-msg bot">Hi! Main Jaspal ka AI assistant hu ðŸ‘‹<br>Insurance, Mutual Fund, IPO me help chahiye?<br><small style="opacity:.7">WhatsApp 99580 37734 â€¢ 5 min quote</small></div>
+      <div class="jch-msg bot">Hi! Main Jaspal ka AI assistant hu 👋<br>Insurance, Mutual Fund, IPO me help chahiye?<br><small style="opacity:.7">WhatsApp 99580 37734 • 5 min quote</small></div>
       <div class="jch-quick"><button data-q="Car Insurance DL8C quote">Car Insurance</button><button data-q="Health Family Floater">Health</button><button data-q="Mutual Fund Nifty 50">Mutual Fund</button><button data-q="IPO details">IPO</button><button data-q="Talk to Jaspal directly">Talk to Jaspal</button></div>
     </div>
     <div class="jch-input"><input id="jch-input" placeholder="Type your message..."/><button id="jch-send">Send</button></div>
@@ -64,7 +64,7 @@
   }
 
   async function askOllama(userText){
-    addMsg('ðŸ¤– AI typing...', 'bot');
+    addMsg('🤖 AI typing...', 'bot');
     const typingEl = body.lastChild;
     // Try bridge first, then direct
     const endpoints = [BRIDGE, DIRECT];
@@ -122,5 +122,23 @@
     });
   }catch(e){}
 
+  
+  // FINAL: Left Quick Chat, Right AI+LIVE - force positions
+  setTimeout(()=>{
+    try{
+      const oldWidgets = document.querySelectorAll('div');
+      oldWidgets.forEach(div=>{
+        if(div.textContent.includes('Quick Chat') && div.style.position==='fixed' || (div.innerHTML.includes('Chat on WhatsApp') && div.parentElement?.style?.position==='fixed')){
+          let target = div;
+          while(target && target.style.position!=='fixed' && target.parentElement) target=target.parentElement;
+          if(target && target.id!=='jaspal-chat-btn' && target.id!=='jaspal-chat-win'){
+            target.style.right='100px';
+            target.style.bottom='20px';
+            target.style.left='auto';
+          }
+        }
+      });
+    }catch(e){}
+  }, 1500);
   console.log('Jaspal Ollama Chat loaded - Model:', MODEL, 'Phone:', PHONE);
 })();
