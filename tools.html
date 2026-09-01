@@ -1,248 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<script src="animations-loader.js" defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Tool & PDF Hub | Jaspal Singh</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f0f2f5; color: #333; }
-        header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 30px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        header p { font-size: 1.1rem; opacity: 0.9; }
-        
-        .filter-container { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; padding: 0 20px; }
-        .filter-btn { padding: 10px 25px; border: none; border-radius: 25px; background: #fff; color: #1e3c72; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 1rem; }
-        .filter-btn:hover, .filter-btn.active { background: #1e3c72; color: #fff; }
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tools Hub - Jaspal Singh</title><style>
+:root{--primary:#f39c12;--dark:#0f172a;--bg:#f8fafc;--card:#ffffff;--text:#334155;--border:#e2e8f0}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--border:#334155}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+header{background:var(--dark);color:#fff;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+.logo{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo h2{margin:0;color:var(--primary);font-size:20px;font-weight:800}
+.badge{background:rgba(243,156,18,.15);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid rgba(243,156,18,.3)}
+nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600}
+nav a:hover{color:var(--primary)}
+.theme-btn{background:#334155;color:#fff;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:600}
+.section{padding:50px 20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid var(--border)}
+.btn{background:var(--primary);color:#000;padding:12px 24px;border-radius:8px;font-weight:800;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(243,156,18,.4)}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+footer{background:var(--dark);color:#94a3b8;text-align:center;padding:30px 20px;margin-top:40px}
+#chat-widget{position:fixed;bottom:24px;right:24px;z-index:9999}
+#chat-btn{width:62px;height:62px;border-radius:50%;background:var(--primary);border:none;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+#chat-box{display:none;width:340px;height:460px;background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;flex-direction:column;margin-bottom:12px;border:1px solid var(--border)}
+#chat-header{background:var(--dark);color:#fff;padding:14px 16px;font-weight:700;display:flex;justify-content:space-between}
+.chat-msg{padding:8px 12px;margin:6px 10px;border-radius:10px;max-width:80%;font-size:14px}
+.user-msg{background:var(--primary);color:#000;margin-left:auto}
+.bot-msg{background:var(--bg);border:1px solid var(--border)}
+</style></head><body>
+<header><div class="logo"><h2>Jaspal Singh</h2><span class="badge">Quickinsure Partner</span><span class="badge">Composite Securities</span></div><nav><a href="index.html">Home</a><a href="investment.html">Investment</a><a href="services.html">Services</a><a href="tools.html">Tools</a><a href="calculators.html">Calculators</a><a href="dashboard.html">Dashboard</a><a href="contact.html">Contact</a><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button></nav></header>
 
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 5%; max-width: 1300px; margin: 0 auto 50px auto; }
-        
-        .tool-card { background: white; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; display: none; }
-        .tool-card.show { display: block; }
-        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        
-        .tool-icon { font-size: 2.5rem; margin-bottom: 15px; }
-        .ai-icon { color: #8a2be2; }
-        .pdf-icon { color: #e74c3c; }
-        .web-icon { color: #2563eb; }
-        .calc-icon { color: #27ae60; }
-        
-        .tool-card h3 { margin-bottom: 10px; font-size: 1.3rem; color: #222; }
-        .tool-card p { font-size: 0.9rem; color: #666; margin-bottom: 20px; height: 45px; overflow: hidden; }
-        .btn-use { display: inline-block; padding: 10px 20px; background: #1e3c72; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-use:hover { background: #2a5298; }
+<section class="section"><h1 style="text-align:center">🛠️ Enterprise Tool & PDF Hub</h1><p style="text-align:center;color:#9ca3af">Complete suite of AI Assistants, Financial Calculators, and PDF Workflows</p>
+<div style="display:flex;justify-content:center;gap:12px;margin:30px 0;flex-wrap:wrap">
+<button class="btn btn-outline" onclick="filterTools('all')" id="btn-all">All Tools</button>
+<button class="btn btn-outline" onclick="filterTools('ai')">AI Tools</button>
+<button class="btn btn-outline" onclick="filterTools('calc')">Calculators</button>
+<button class="btn btn-outline" onclick="filterTools('pdf')">PDF</button>
+<button class="btn btn-outline" onclick="filterTools('search')">Search</button>
+</div>
+<div class="cards" id="toolsGrid">
+<div class="card tool-card calc"><h3>📊 Financial Calculators</h3><p>Calculate SIP returns and Loan EMIs instantly.</p><a href="calculators.html" class="btn">Open Calculators</a></div>
+<div class="card tool-card ai"><h3>💬 ChatGPT</h3><p>World's leading conversational AI.</p><a href="https://chatgpt.com" target="_blank" class="btn">Open ChatGPT</a></div>
+<div class="card tool-card ai"><h3>✨ Google Gemini</h3><p>Google's advanced multimodal AI.</p><a href="https://gemini.google.com" target="_blank" class="btn">Open Gemini</a></div>
+<div class="card tool-card search"><h3>🖼️ Google Image Search</h3><p>Search the web using images.</p><a href="https://images.google.com" target="_blank" class="btn">Open Search</a></div>
+<div class="card tool-card search"><h3>👁️ Google Lens</h3><p>Identify objects via images.</p><a href="https://lens.google.com" target="_blank" class="btn">Open Lens</a></div>
+<div class="card tool-card pdf"><h3>📄 Merge PDF</h3><p>Combine PDFs in order you want.</p><a href="https://www.ilovepdf.com/merge_pdf" target="_blank" class="btn">Use Tool</a></div>
+<div class="card tool-card pdf"><h3>✂️ Split PDF</h3><p>Separate PDF pages.</p><a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="btn">Use Tool</a></div>
+<div class="card tool-card pdf"><h3>🗜️ Compress PDF</h3><p>Reduce file size.</p><a href="https://www.ilovepdf.com/compress_pdf" target="_blank" class="btn">Use Tool</a></div>
+<div class="card tool-card pdf"><h3>📝 PDF to Word</h3><p>Convert PDF to editable DOC.</p><a href="https://www.ilovepdf.com/pdf_to_word" target="_blank" class="btn">Use Tool</a></div>
+<div class="card tool-card pdf"><h3>📊 PDF to Excel</h3><p>Pull data to Excel.</p><a href="https://www.ilovepdf.com/pdf_to_excel" target="_blank" class="btn">Use Tool</a></div>
+<div class="card tool-card contact"><h3>💚 WhatsApp Booking</h3><p>Book insurance, investment instantly.</p><a href="contact.html" class="btn" style="background:#25D366">Open Booking</a></div>
+</div></section>
+<script>
+function filterTools(cat){
+ document.querySelectorAll('.tool-card').forEach(c=>{
+   if(cat==='all'){c.style.display='block';}
+   else{c.style.display=c.classList.contains(cat)?'block':'none';}
+ });
+}
+</script>
 
-        .home-btn { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
-        .home-btn i { margin-right: 5px; }
-    </style>
-</head>
-<body>
+<footer><p>© 2015-2026 Jaspal Singh | +91 9958037734 | jasspunjab3088@gmail.com | Connaught Place Delhi</p></footer>
+<div id="chat-widget"><div id="chat-box"><div id="chat-header"><span>💬 Jaspal Assistant</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div><div id="chat-body" style="flex:1;padding:10px;overflow:auto"><div class="chat-msg bot-msg">Hi! I am Jaspal's assistant. Ask about Insurance, Mutual Funds, IPOs, IT Support.</div></div><div style="display:flex;padding:8px;border-top:1px solid var(--border)"><input id="chat-input" placeholder="Type..."><button class="btn" style="margin-left:6px" onclick="sendChat()">Send</button></div></div><button id="chat-btn" onclick="toggleChat()">💬</button></div>
 
-    <header>
-        <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
-        <h1><i class="fas fa-toolbox"></i> Enterprise Tool & PDF Hub</h1>
-        <p>Complete suite of AI Assistants, Financial Calculators, and Advanced PDF Workflows</p>
-    </header>
+<script>
+function toggleTheme(){let t=document.documentElement.getAttribute('data-theme');let nt=t==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nt);localStorage.setItem('theme',nt);let b=document.getElementById('themeBtn');if(b)b.innerText=nt==='dark'?'☀️ Light':'🌙 Dark';}
+let saved=localStorage.getItem('theme');if(saved){document.documentElement.setAttribute('data-theme',saved);}
+function toggleChat(){let b=document.getElementById('chat-box');b.style.display=b.style.display==='flex'?'none':'flex';b.style.flexDirection='column';}
+function sendChat(){let i=document.getElementById('chat-input');if(!i)return;let t=i.value.trim();if(!t)return;let b=document.getElementById('chat-body');b.innerHTML+=`<div class="chat-msg user-msg">${t}</div>`;i.value='';let reply='WhatsApp me at 9958037734 for '+t;let low=t.toLowerCase();if(low.includes('insurance'))reply='Quickinsure - 4 Wheeler, Bike, Health, Travel, Commercial Vehicle, Life instant quotes. Share RC on WhatsApp 9958037734';if(low.includes('mutual')||low.includes('sip')||low.includes('ipo')||low.includes('investment'))reply='Mutual Funds & IPOs via Composite Securities Ltd. Open Demat: live.meon.co.in/composite/individual or WhatsApp 9958037734';setTimeout(()=>{b.innerHTML+=`<div class="chat-msg bot-msg">${reply}</div>`;b.scrollTop=b.scrollHeight;},400);}
+document.addEventListener('DOMContentLoaded',()=>{let inp=document.getElementById('chat-input');if(inp)inp.addEventListener('keypress',e=>{if(e.key==='Enter')sendChat();}); let tb=document.getElementById('themeBtn'); if(tb){let s=localStorage.getItem('theme'); tb.innerText=s==='dark'?'☀️ Light':'🌙 Dark';}});
+</script>
 
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterTools('all')">All Tools</button>
-        <button class="filter-btn" onclick="filterTools('ai')">AI Tools</button>
-        <button class="filter-btn" onclick="filterTools('calc')">Calculators</button>
-        <button class="filter-btn" onclick="filterTools('pdf')">PDF Workflows</button>
-        <button class="filter-btn" onclick="filterTools('search')">Search & Web</button>
-    </div>
-
-    <div class="tools-grid">
-<div class="tool-card contact show"><i class="fab fa-whatsapp tool-icon" style="color: #25D366;"></i><h3>WhatsApp Booking</h3><p>Book insurance, investment, or IT services instantly via WhatsApp.</p><a href="contact.html" class="btn-use" style="background: #25D366;">Open Booking</a></div>
-        
-        <!-- CALCULATORS -->
-        <div class="tool-card calc show">
-            <i class="fas fa-calculator tool-icon calc-icon"></i>
-            <h3>Financial Calculators</h3>
-            <p>Calculate your SIP returns and Loan EMIs instantly.</p>
-            <a href="calculators.html" class="btn-use" style="background: #27ae60;">Open Calculators</a>
-        </div>
-
-        <!-- AI TOOLS -->
-        <div class="tool-card ai show">
-            <i class="fas fa-comments tool-icon ai-icon"></i>
-            <h3>ChatGPT (OpenAI)</h3>
-            <p>World's leading conversational AI for content, coding, and queries.</p>
-            <a href="https://chatgpt.com" target="_blank" class="btn-use">Open ChatGPT</a>
-        </div>
-
-        <div class="tool-card ai show">
-            <i class="fas fa-sparkles tool-icon ai-icon"></i>
-            <h3>Google Gemini</h3>
-            <p>Google's advanced multimodal AI assistant for text and analysis.</p>
-            <a href="https://gemini.google.com" target="_blank" class="btn-use">Open Gemini</a>
-        </div>
-
-        <!-- SEARCH TOOLS -->
-        <div class="tool-card search show">
-            <i class="fas fa-camera-retro tool-icon web-icon"></i>
-            <h3>Google Image Search</h3>
-            <p>Search the web using images or find high-quality visuals instantly.</p>
-            <a href="https://images.google.com" target="_blank" class="btn-use">Open Search</a>
-        </div>
-
-        <div class="tool-card search show">
-            <i class="fas fa-eye tool-icon web-icon"></i>
-            <h3>Google Lens</h3>
-            <p>Identify objects, plants, or translate text via images.</p>
-            <a href="https://lens.google.com" target="_blank" class="btn-use">Open Lens</a>
-        </div>
-
-        <!-- PDF WORKFLOWS (ILOVEPDF DIRECT LINKS) -->
-        <div class="tool-card pdf show">
-            <i class="fas fa-object-group tool-icon pdf-icon"></i>
-            <h3>Merge PDF</h3>
-            <p>Combine PDFs in the order you want with the easiest PDF merger.</p>
-            <a href="https://www.ilovepdf.com/merge_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-cut tool-icon pdf-icon"></i>
-            <h3>Split PDF</h3>
-            <p>Separate one page or a whole set into independent PDF files.</p>
-            <a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-compress tool-icon pdf-icon"></i>
-            <h3>Compress PDF</h3>
-            <p>Reduce file size while optimizing for maximal PDF quality.</p>
-            <a href="https://www.ilovepdf.com/compress_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-file-word tool-icon pdf-icon"></i>
-            <h3>PDF to Word</h3>
-            <p>Easily convert your PDF files into editable DOC and DOCX documents.</p>
-            <a href="https://www.ilovepdf.com/pdf_to_word" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-file-powerpoint tool-icon pdf-icon"></i>
-            <h3>PDF to PowerPoint</h3>
-            <p>Turn your PDF files into editable PPT and PPTX slideshows.</p>
-            <a href="https://www.ilovepdf.com/pdf_to_powerpoint" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-file-excel tool-icon pdf-icon"></i>
-            <h3>PDF to Excel</h3>
-            <p>Pull data straight from PDFs into Excel spreadsheets in seconds.</p>
-            <a href="https://www.ilovepdf.com/pdf_to_excel" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-file-alt tool-icon pdf-icon"></i>
-            <h3>Word to PDF</h3>
-            <p>Make DOC and DOCX files easy to read by converting them to PDF.</p>
-            <a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-file-image tool-icon pdf-icon"></i>
-            <h3>PDF to JPG</h3>
-            <p>Convert each PDF page into a JPG or extract all images.</p>
-            <a href="https://www.ilovepdf.com/pdf_to_jpg" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-images tool-icon pdf-icon"></i>
-            <h3>JPG to PDF</h3>
-            <p>Convert JPG images to PDF in seconds with custom orientation.</p>
-            <a href="https://www.ilovepdf.com/jpg_to_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-signature tool-icon pdf-icon"></i>
-            <h3>Sign PDF</h3>
-            <p>Sign yourself or request electronic signatures from others securely.</p>
-            <a href="https://www.ilovepdf.com/sign_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-stamp tool-icon pdf-icon"></i>
-            <h3>Watermark PDF</h3>
-            <p>Stamp an image or text over your PDF with custom transparency.</p>
-            <a href="https://www.ilovepdf.com/pdf_watermark" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-redo tool-icon pdf-icon"></i>
-            <h3>Rotate PDF</h3>
-            <p>Rotate your PDFs the way you need, multiple at once.</p>
-            <a href="https://www.ilovepdf.com/rotate_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-lock-open tool-icon pdf-icon"></i>
-            <h3>Unlock PDF</h3>
-            <p>Remove PDF password security to use your documents freely.</p>
-            <a href="https://www.ilovepdf.com/unlock_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-lock tool-icon pdf-icon"></i>
-            <h3>Protect PDF</h3>
-            <p>Protect PDF files with a password and encrypt documents.</p>
-            <a href="https://www.ilovepdf.com/protect_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-tasks tool-icon pdf-icon"></i>
-            <h3>Organize PDF</h3>
-            <p>Sort pages of your PDF, delete pages or add new pages easily.</p>
-            <a href="https://www.ilovepdf.com/organize_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-tools tool-icon pdf-icon"></i>
-            <h3>Repair PDF</h3>
-            <p>Repair a damaged PDF and recover data from corrupt files.</p>
-            <a href="https://www.ilovepdf.com/repair-pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-sort-numeric-down tool-icon pdf-icon"></i>
-            <h3>Page Numbers</h3>
-            <p>Add page numbers into PDFs with custom positions and fonts.</p>
-            <a href="https://www.ilovepdf.com/add_pdf_page_number" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-        <div class="tool-card pdf show">
-            <i class="fas fa-crop tool-icon pdf-icon"></i>
-            <h3>Crop PDF</h3>
-            <p>Crop margins of PDF documents or select specific areas.</p>
-            <a href="https://www.ilovepdf.com/crop_pdf" target="_blank" class="btn-use">Use Tool</a>
-        </div>
-
-    </div>
-
-    <script>
-        function filterTools(category) {
-            let btns = document.querySelectorAll('.filter-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            let cards = document.querySelectorAll('.tool-card');
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.classList.add('show');
-                } else {
-                    if (card.classList.contains(category)) {
-                        card.classList.add('show');
-                    } else {
-                        card.classList.remove('show');
-                    }
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+</body></html>

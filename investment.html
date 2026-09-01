@@ -1,126 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<script src="animations-loader.js" defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment & Trading Services - Jaspal Singh</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1a202c;
-            color: #ffffff;
-            margin: 0;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background-color: #111827;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-            border: 1px solid #374151;
-        }
-        h1 {
-            color: #f6ad55;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-        .powered-by {
-            text-align: center;
-            font-size: 13px;
-            color: #9ca3af;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-        }
-        .intro-box {
-            background-color: #1f2937;
-            border-left: 4px solid #f6ad55;
-            padding: 15px 20px;
-            margin-bottom: 30px;
-            border-radius: 4px;
-            font-size: 15px;
-            line-height: 1.6;
-            color: #d1d5db;
-        }
-        .intro-box strong {
-            color: #ffffff;
-        }
-        .service-card {
-            background-color: #1f2937;
-            border: 1px solid #374151;
-            padding: 22px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .service-info {
-            flex: 1;
-            min-width: 260px;
-        }
-        .service-info h3 {
-            margin: 0 0 8px 0;
-            color: #ffffff;
-            font-size: 18px;
-        }
-        .service-info p {
-            margin: 0;
-            color: #9ca3af;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        .btn-action {
-            background-color: #f6ad55;
-            color: #1a202c;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: background 0.3s;
-            white-space: nowrap;
-        }
-        .btn-action:hover {
-            background-color: #dd6b20;
-            color: #ffffff;
-        }
-    </style>
-</head>
-<body>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Investment & Trading - Jaspal Singh</title><style>
+:root{--primary:#f39c12;--dark:#0f172a;--bg:#f8fafc;--card:#ffffff;--text:#334155;--border:#e2e8f0}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--border:#334155}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+header{background:var(--dark);color:#fff;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+.logo{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo h2{margin:0;color:var(--primary);font-size:20px;font-weight:800}
+.badge{background:rgba(243,156,18,.15);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid rgba(243,156,18,.3)}
+nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600}
+nav a:hover{color:var(--primary)}
+.theme-btn{background:#334155;color:#fff;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:600}
+.section{padding:50px 20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid var(--border)}
+.btn{background:var(--primary);color:#000;padding:12px 24px;border-radius:8px;font-weight:800;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(243,156,18,.4)}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+footer{background:var(--dark);color:#94a3b8;text-align:center;padding:30px 20px;margin-top:40px}
+#chat-widget{position:fixed;bottom:24px;right:24px;z-index:9999}
+#chat-btn{width:62px;height:62px;border-radius:50%;background:var(--primary);border:none;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+#chat-box{display:none;width:340px;height:460px;background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;flex-direction:column;margin-bottom:12px;border:1px solid var(--border)}
+#chat-header{background:var(--dark);color:#fff;padding:14px 16px;font-weight:700;display:flex;justify-content:space-between}
+.chat-msg{padding:8px 12px;margin:6px 10px;border-radius:10px;max-width:80%;font-size:14px}
+.user-msg{background:var(--primary);color:#000;margin-left:auto}
+.bot-msg{background:var(--bg);border:1px solid var(--border)}
+</style></head><body>
+<header><div class="logo"><h2>Jaspal Singh</h2><span class="badge">Quickinsure Partner</span><span class="badge">Composite Securities</span></div><nav><a href="index.html">Home</a><a href="investment.html">Investment</a><a href="services.html">Services</a><a href="tools.html">Tools</a><a href="calculators.html">Calculators</a><a href="dashboard.html">Dashboard</a><a href="contact.html">Contact</a><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button></nav></header>
 
-    <div class="container">
-        <h1>Investment & Trading Hub</h1>
-        <div class="powered-by">Powered by Composite Securities Limited</div>
+<section class="section"><div style="max-width:850px;margin:auto"><div class="card"><h1 style="text-align:center;color:var(--primary)">Investment & Trading Hub</h1><p style="text-align:center;color:#9ca3af;font-size:13px">Powered by Composite Securities Limited</p>
+<div style="background:var(--bg);border-left:4px solid var(--primary);padding:15px 20px;margin:25px 0;border-radius:4px"><p>Hello, I'm <strong>Jaspal Singh</strong>. As an IT Technician and Financial Partner, I provide comprehensive technical support and reliable financial/investment solutions. Through our partnership with <strong>Composite Securities Limited</strong>, you can securely open your trading accounts and seamlessly apply for upcoming IPOs.</p></div>
+<div class="cards" style="grid-template-columns:1fr">
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h3>Open Demat & Trading Account</h3><p style="color:#9ca3af;font-size:14px">Start your financial journey. Open your account securely.</p></div><a href="https://live.meon.co.in/composite/individual" target="_blank" class="btn">Open Account</a></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h3>Apply for Current IPOs</h3><p style="color:#9ca3af;font-size:14px">Already have an account? Check live IPOs and bid instantly.</p></div><a href="https://ipo.meon.co.in/composite" target="_blank" class="btn">Apply IPO</a></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h3>SIP & Mutual Funds Calculator</h3><p style="color:#9ca3af;font-size:14px">Plan your SIP returns and wealth creation.</p></div><a href="calculators.html" class="btn">Calculate SIP</a></div>
+</div>
+</div></div></section>
 
-        <!-- Your IT & Financial Introduction -->
-        <div class="intro-box">
-            Hello, I'm <strong>Jaspal Singh</strong>. As an IT Technician and Financial Partner, I provide comprehensive technical support and reliable financial/investment solutions. Through our partnership with <strong>Composite Securities Limited</strong>, you can securely open your trading accounts and seamlessly apply for upcoming IPOs with expert guidance.
-        </div>
+<footer><p>© 2015-2026 Jaspal Singh | +91 9958037734 | jasspunjab3088@gmail.com | Connaught Place Delhi</p></footer>
+<div id="chat-widget"><div id="chat-box"><div id="chat-header"><span>💬 Jaspal Assistant</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div><div id="chat-body" style="flex:1;padding:10px;overflow:auto"><div class="chat-msg bot-msg">Hi! I am Jaspal's assistant. Ask about Insurance, Mutual Funds, IPOs, IT Support.</div></div><div style="display:flex;padding:8px;border-top:1px solid var(--border)"><input id="chat-input" placeholder="Type..."><button class="btn" style="margin-left:6px" onclick="sendChat()">Send</button></div></div><button id="chat-btn" onclick="toggleChat()">💬</button></div>
 
-        <!-- Service 1: Account Opening -->
-        <div class="service-card">
-            <div class="service-info">
-                <h3>Open Demat & Trading Account</h3>
-                <p>Start your financial journey. Fill out the individual registration form to open your account securely.</p>
-            </div>
-            <a href="https://live.meon.co.in/composite/individual" target="_blank" class="btn-action">Open Account</a>
-        </div>
+<script>
+function toggleTheme(){let t=document.documentElement.getAttribute('data-theme');let nt=t==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nt);localStorage.setItem('theme',nt);let b=document.getElementById('themeBtn');if(b)b.innerText=nt==='dark'?'☀️ Light':'🌙 Dark';}
+let saved=localStorage.getItem('theme');if(saved){document.documentElement.setAttribute('data-theme',saved);}
+function toggleChat(){let b=document.getElementById('chat-box');b.style.display=b.style.display==='flex'?'none':'flex';b.style.flexDirection='column';}
+function sendChat(){let i=document.getElementById('chat-input');if(!i)return;let t=i.value.trim();if(!t)return;let b=document.getElementById('chat-body');b.innerHTML+=`<div class="chat-msg user-msg">${t}</div>`;i.value='';let reply='WhatsApp me at 9958037734 for '+t;let low=t.toLowerCase();if(low.includes('insurance'))reply='Quickinsure - 4 Wheeler, Bike, Health, Travel, Commercial Vehicle, Life instant quotes. Share RC on WhatsApp 9958037734';if(low.includes('mutual')||low.includes('sip')||low.includes('ipo')||low.includes('investment'))reply='Mutual Funds & IPOs via Composite Securities Ltd. Open Demat: live.meon.co.in/composite/individual or WhatsApp 9958037734';setTimeout(()=>{b.innerHTML+=`<div class="chat-msg bot-msg">${reply}</div>`;b.scrollTop=b.scrollHeight;},400);}
+document.addEventListener('DOMContentLoaded',()=>{let inp=document.getElementById('chat-input');if(inp)inp.addEventListener('keypress',e=>{if(e.key==='Enter')sendChat();}); let tb=document.getElementById('themeBtn'); if(tb){let s=localStorage.getItem('theme'); tb.innerText=s==='dark'?'☀️ Light':'🌙 Dark';}});
+</script>
 
-        <!-- Service 2: IPO Bidding -->
-        <div class="service-card">
-            <div class="service-info">
-                <h3>Apply for Current IPOs</h3>
-                <p>Already have an account? Check active primary market issues and bid for live IPOs instantly.</p>
-            </div>
-            <a href="https://ipo.meon.co.in/composite" target="_blank" class="btn-action">Apply IPO</a>
-        </div>
-
-    </div>
-
-</body>
-</html>
+</body></html>

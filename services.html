@@ -1,75 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services & Insurance - Jaspal Singh</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        .container { width: 80%; margin: auto; background: #fff; padding: 20px; border: 2px solid #333; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
-        header { background: #333; color: #fff; padding: 15px; text-align: center; border-radius: 10px 10px 0 0; }
-        nav { text-align: center; padding: 10px; background: #007BFF; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; padding: 10px; }
-        h1, h2 { text-align: center; }
-        .section { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #ddd; }
-        .service-button { display: block; width: 250px; margin: 10px auto; padding: 10px; background: #007BFF; color: white; text-align: center; border-radius: 5px; text-decoration: none; font-weight: bold; }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Services & Insurance</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services & Insurance</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <div class="container">
-        <section class="section">
-            <h2>IT Services</h2>
-            <p>Expert IT support, data security, and financial technology solutions to enhance business operations.</p>
-            <ul>
-                <li>IT Support & Maintenance</li>
-                <li>Risk Management System (RMS)</li>
-                <li>Data Management & Security</li>
-                <li>Market Analysis & Financial Strategies</li>
-            </ul>
-            <a class="service-button" href="#">Learn More</a>
-        </section>
-        <section class="section">
-<h2>Digit and Quick Insurance Partner</h2>
-<img src="image/digit-insurance-card.jpg" alt="Digit Insurance Partner Card" width="300">
-<p>IT Technician | Computer Support Professional | Team Leader | Insurance Consultant.</p>
-
-            <h2>Insurance Services</h2>
-            <p>Comprehensive insurance solutions tailored for individuals and businesses.</p>
-            <ul>
-                <li>4-Wheeler & Bike Insurance</li>
-                <li>Health & Travel Insurance</li>
-                <li>Commercial Vehicle Insurance</li>
-                <li>Personal Accident Coverage</li>
-            </ul>
-            <a class="service-button" href="contact.html">Get a Quote</a>
-        </section>
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services & Insurance - Jaspal Singh</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        .container { width: 80%; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
-        header { background: #333; color: #fff; padding: 15px; text-align: center; border-radius: 10px 10px 0 0; }
-        h1, h2 { text-align: center; }
-        .section { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #ddd; }
-        .service-button { display: block; width: 250px; margin: 10px auto; padding: 10px; background: #007BFF; color: white; text-align: center; border-radius: 5px; text-decoration: none; font-weight: bold; }
-    </style>
-</head>
-<body>
-    
-</html>
-
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Services - Jaspal Singh</title><style>
+:root{--primary:#f39c12;--primary-hover:#d68910;--dark:#0f172a;--bg:#f8fafc;--card:#ffffff;--text:#334155;--border:#e2e8f0}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--border:#334155}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+header{background:var(--dark);color:#fff;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.logo{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo h2{margin:0;color:var(--primary);font-size:20px;font-weight:800}
+.badge{background:rgba(243,156,18,.15);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid rgba(243,156,18,.3)}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600;transition:.2s}
+nav a:hover{color:var(--primary)}
+.theme-btn{background:#334155;color:#fff;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:600}
+.section{padding:60px 20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid var(--border);transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.btn{background:var(--primary);color:#000;padding:12px 24px;border-radius:8px;font-weight:800;text-decoration:none;display:inline-block;border:none;cursor:pointer;transition:.3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(243,156,18,.4)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.quote-box{background:var(--card);border-radius:12px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:600px;margin:30px auto;border:1px solid var(--border)}
+.quote-box input,.quote-box select,.quote-box textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+footer{background:var(--dark);color:#94a3b8;text-align:center;padding:30px 20px;margin-top:40px}
+.footer-nav a{color:#cbd5e1;text-decoration:none;margin:0 10px;font-size:14px}
+#chat-widget{position:fixed;bottom:24px;right:24px;z-index:9999}
+#chat-btn{width:62px;height:62px;border-radius:50%;background:var(--primary);border:none;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+#chat-btn:hover{transform:scale(1.08)}
+#chat-box{display:none;width:340px;height:460px;background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;flex-direction:column;margin-bottom:12px;border:1px solid var(--border)}
+#chat-header{background:var(--dark);color:#fff;padding:14px 16px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.chat-msg{padding:8px 12px;margin:6px 10px;border-radius:10px;max-width:80%;font-size:14px}
+.user-msg{background:var(--primary);color:#000;margin-left:auto;text-align:right}
+.bot-msg{background:var(--bg);border:1px solid var(--border)}
+</style></head><body>
+<header><div class="logo"><h2>Jaspal Singh</h2><span class="badge">Services</span></div><nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="tools.html">Tools</a><a href="contact.html">Contact</a><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button></nav></header>
+<section class="section"><h1 style="text-align:center">Our Core Services</h1>
+<div class="cards">
+<div class="card"><h3>🛡️ Insurance - Quickinsure</h3><ul><li>4 Wheeler Insurance</li><li>Bike Insurance</li><li>Health Insurance</li><li>Travel Insurance</li><li>Commercial Vehicle</li><li>Life Insurance</li></ul><a class="btn" href="contact.html">Get Quote</a></div>
+<div class="card"><h3>📈 Investment - Composite Securities</h3><ul><li>Mutual Funds (SIP/Lumpsum)</li><li>IPO Applications</li><li>NSE Cash Trading</li><li>Portfolio Review</li></ul><a class="btn" href="calculators.html">Calculate SIP</a></div>
+<div class="card"><h3>💻 IT & RMS Solutions</h3><ul><li>IT Support & Maintenance</li><li>Risk Management System (RMS)</li><li>Data Security & Backup</li><li>Market Analysis Tools</li></ul><a class="btn" href="dashboard.html">View Dashboard</a></div>
+</div>
+<div class="card" style="margin-top:24px"><h3>Digit Insurance Partner</h3><p>IT Technician | Computer Support Professional | Team Leader | Insurance Consultant. Authorized Quickinsure & Digit partner.</p></div>
+</section>
+<footer><p>© 2015-2026 Jaspal Singh | Connaught Place Delhi</p></footer>
+<div id="chat-widget"><div id="chat-box"><div id="chat-header"><span>💬 Jaspal Assistant</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div><div id="chat-body" style="flex:1;padding:10px;overflow:auto"></div><div style="display:flex;padding:8px"><input id="chat-input" style="flex:1;padding:10px"><button class="btn" onclick="sendChat()">Send</button></div></div><button id="chat-btn" onclick="toggleChat()">💬</button></div>
+<script>function toggleTheme(){let t=document.documentElement.getAttribute('data-theme');let nt=t==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nt);localStorage.setItem('theme',nt);}let saved=localStorage.getItem('theme');if(saved)document.documentElement.setAttribute('data-theme',saved);
+function toggleChat(){let b=document.getElementById('chat-box');b.style.display=b.style.display==='flex'?'none':'flex';b.style.flexDirection='column';}function sendChat(){let i=document.getElementById('chat-input');let t=i.value.trim();if(!t)return;let b=document.getElementById('chat-body');b.innerHTML+=`<div class="chat-msg user-msg">${t}</div>`;i.value='';setTimeout(()=>{b.innerHTML+=`<div class="chat-msg bot-msg">Thanks! WhatsApp me at 9958037734 for ${t}</div>`;},400);}</script>
+</body></html>

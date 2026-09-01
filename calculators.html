@@ -1,111 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<script src="animations-loader.js" defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial & Loan Calculators | Jaspal Singh Hub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; }
-        header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 30px 20px; text-align: center; position: relative; }
-        .home-btn { position: absolute; top: 25px; left: 20px; color: white; text-decoration: none; font-weight: bold; }
-        
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; }
-        .calc-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .calc-card h2 { margin-bottom: 20px; color: #1e3c72; font-size: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; }
-        .input-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
-        
-        .calc-btn { background: #1e3c72; color: white; border: none; padding: 12px 20px; width: 100%; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .calc-btn:hover { background: #2a5298; }
-        
-        .result-box { margin-top: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 5px solid #1e3c72; font-size: 1.1rem; }
-    </style>
-</head>
-<body>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Calculators - Jaspal Singh</title><style>
+:root{--primary:#f39c12;--dark:#0f172a;--bg:#f8fafc;--card:#ffffff;--text:#334155;--border:#e2e8f0}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--border:#334155}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+header{background:var(--dark);color:#fff;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+.logo{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo h2{margin:0;color:var(--primary);font-size:20px;font-weight:800}
+.badge{background:rgba(243,156,18,.15);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid rgba(243,156,18,.3)}
+nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600}
+nav a:hover{color:var(--primary)}
+.theme-btn{background:#334155;color:#fff;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:600}
+.section{padding:50px 20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid var(--border)}
+.btn{background:var(--primary);color:#000;padding:12px 24px;border-radius:8px;font-weight:800;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(243,156,18,.4)}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+footer{background:var(--dark);color:#94a3b8;text-align:center;padding:30px 20px;margin-top:40px}
+#chat-widget{position:fixed;bottom:24px;right:24px;z-index:9999}
+#chat-btn{width:62px;height:62px;border-radius:50%;background:var(--primary);border:none;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+#chat-box{display:none;width:340px;height:460px;background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;flex-direction:column;margin-bottom:12px;border:1px solid var(--border)}
+#chat-header{background:var(--dark);color:#fff;padding:14px 16px;font-weight:700;display:flex;justify-content:space-between}
+.chat-msg{padding:8px 12px;margin:6px 10px;border-radius:10px;max-width:80%;font-size:14px}
+.user-msg{background:var(--primary);color:#000;margin-left:auto}
+.bot-msg{background:var(--bg);border:1px solid var(--border)}
+</style></head><body>
+<header><div class="logo"><h2>Jaspal Singh</h2><span class="badge">Quickinsure Partner</span><span class="badge">Composite Securities</span></div><nav><a href="index.html">Home</a><a href="investment.html">Investment</a><a href="services.html">Services</a><a href="tools.html">Tools</a><a href="calculators.html">Calculators</a><a href="dashboard.html">Dashboard</a><a href="contact.html">Contact</a><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button></nav></header>
 
-    <header>
-        <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Home</a>
-        <h1><i class="fas fa-calculator"></i> Financial & Loan Calculators</h1>
-        <p>Plan your investments and calculate your EMIs instantly</p>
-    </header>
+<section class="section"><h1 style="text-align:center">💰 Financial & Loan Calculators</h1><p style="text-align:center;color:#9ca3af">Plan your investments and EMIs instantly</p>
+<div class="cards" style="margin-top:30px">
+<div class="card"><h2>📈 SIP Return Calculator</h2>
+<label>Monthly Investment (₹)</label><input type="number" id="sipAmount" value="5000">
+<label>Expected Annual Return (%)</label><input type="number" id="sipRate" value="12">
+<label>Time Period (Years)</label><input type="number" id="sipYears" value="10">
+<button class="btn" style="width:100%;margin-top:10px" onclick="calculateSIP()">Calculate SIP</button>
+<div id="sipResult" style="margin-top:15px;background:var(--bg);padding:12px;border-radius:8px;border-left:4px solid var(--primary)">Enter details.</div>
+</div>
+<div class="card"><h2>🏦 Loan EMI Calculator</h2>
+<label>Loan Amount (₹)</label><input type="number" id="loanAmount" value="500000">
+<label>Interest Rate (% P.A.)</label><input type="number" id="loanRate" value="8.5">
+<label>Loan Tenure (Years)</label><input type="number" id="loanYears" value="5">
+<button class="btn" style="width:100%;margin-top:10px" onclick="calculateEMI()">Calculate EMI</button>
+<div id="emiResult" style="margin-top:15px;background:var(--bg);padding:12px;border-radius:8px;border-left:4px solid var(--primary)">Enter details.</div>
+</div>
+</div>
+</section>
+<script>
+function calculateSIP(){let p=parseFloat(document.getElementById('sipAmount').value);let i=parseFloat(document.getElementById('sipRate').value)/12/100;let n=parseFloat(document.getElementById('sipYears').value)*12;let maturity=p*((Math.pow(1+i,n)-1)/i)*(1+i);let invested=p*n;let gain=maturity-invested;document.getElementById('sipResult').innerHTML=`<b>Invested:</b> ₹${invested.toFixed(0)}<br><b>Wealth:</b> ₹${maturity.toFixed(0)}<br><b>Gain:</b> ₹${gain.toFixed(0)}`;}
+function calculateEMI(){let p=parseFloat(document.getElementById('loanAmount').value);let r=parseFloat(document.getElementById('loanRate').value)/12/100;let n=parseFloat(document.getElementById('loanYears').value)*12;let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);let total=emi*n;let interest=total-p;document.getElementById('emiResult').innerHTML=`<b>EMI:</b> ₹${emi.toFixed(0)}<br><b>Interest:</b> ₹${interest.toFixed(0)}<br><b>Total:</b> ₹${total.toFixed(0)}`;}
+</script>
 
-    <div class="container">
-        <!-- SIP Calculator -->
-        <div class="calc-card">
-            <h2><i class="fas fa-chart-line"></i> SIP Return Calculator</h2>
-            <div class="input-group">
-                <label>Monthly Investment (₹):</label>
-                <input type="number" id="sipAmount" value="5000">
-            </div>
-            <div class="input-group">
-                <label>Expected Annual Return Rate (%):</label>
-                <input type="number" id="sipRate" value="12">
-            </div>
-            <div class="input-group">
-                <label>Time Period (Years):</label>
-                <input type="number" id="sipYears" value="10">
-            </div>
-            <button class="calc-btn" onclick="calculateSIP()">Calculate SIP</button>
-            <div class="result-box" id="sipResult">Enter details and click calculate.</div>
-        </div>
+<footer><p>© 2015-2026 Jaspal Singh | +91 9958037734 | jasspunjab3088@gmail.com | Connaught Place Delhi</p></footer>
+<div id="chat-widget"><div id="chat-box"><div id="chat-header"><span>💬 Jaspal Assistant</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div><div id="chat-body" style="flex:1;padding:10px;overflow:auto"><div class="chat-msg bot-msg">Hi! I am Jaspal's assistant. Ask about Insurance, Mutual Funds, IPOs, IT Support.</div></div><div style="display:flex;padding:8px;border-top:1px solid var(--border)"><input id="chat-input" placeholder="Type..."><button class="btn" style="margin-left:6px" onclick="sendChat()">Send</button></div></div><button id="chat-btn" onclick="toggleChat()">💬</button></div>
 
-        <!-- EMI Calculator -->
-        <div class="calc-card">
-            <h2><i class="fas fa-university"></i> Loan EMI Calculator</h2>
-            <div class="input-group">
-                <label>Loan Amount (₹):</label>
-                <input type="number" id="loanAmount" value="500000">
-            </div>
-            <div class="input-group">
-                <label>Interest Rate (% P.A.):</label>
-                <input type="number" id="loanRate" value="8.5">
-            </div>
-            <div class="input-group">
-                <label>Loan Tenure (Years):</label>
-                <input type="number" id="loanYears" value="5">
-            </div>
-            <button class="calc-btn" onclick="calculateEMI()">Calculate EMI</button>
-            <div class="result-box" id="emiResult">Enter details and click calculate.</div>
-        </div>
-    </div>
+<script>
+function toggleTheme(){let t=document.documentElement.getAttribute('data-theme');let nt=t==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nt);localStorage.setItem('theme',nt);let b=document.getElementById('themeBtn');if(b)b.innerText=nt==='dark'?'☀️ Light':'🌙 Dark';}
+let saved=localStorage.getItem('theme');if(saved){document.documentElement.setAttribute('data-theme',saved);}
+function toggleChat(){let b=document.getElementById('chat-box');b.style.display=b.style.display==='flex'?'none':'flex';b.style.flexDirection='column';}
+function sendChat(){let i=document.getElementById('chat-input');if(!i)return;let t=i.value.trim();if(!t)return;let b=document.getElementById('chat-body');b.innerHTML+=`<div class="chat-msg user-msg">${t}</div>`;i.value='';let reply='WhatsApp me at 9958037734 for '+t;let low=t.toLowerCase();if(low.includes('insurance'))reply='Quickinsure - 4 Wheeler, Bike, Health, Travel, Commercial Vehicle, Life instant quotes. Share RC on WhatsApp 9958037734';if(low.includes('mutual')||low.includes('sip')||low.includes('ipo')||low.includes('investment'))reply='Mutual Funds & IPOs via Composite Securities Ltd. Open Demat: live.meon.co.in/composite/individual or WhatsApp 9958037734';setTimeout(()=>{b.innerHTML+=`<div class="chat-msg bot-msg">${reply}</div>`;b.scrollTop=b.scrollHeight;},400);}
+document.addEventListener('DOMContentLoaded',()=>{let inp=document.getElementById('chat-input');if(inp)inp.addEventListener('keypress',e=>{if(e.key==='Enter')sendChat();}); let tb=document.getElementById('themeBtn'); if(tb){let s=localStorage.getItem('theme'); tb.innerText=s==='dark'?'☀️ Light':'🌙 Dark';}});
+</script>
 
-    <script>
-        function calculateSIP() {
-            let p = parseFloat(document.getElementById('sipAmount').value);
-            let i = parseFloat(document.getElementById('sipRate').value) / 12 / 100;
-            let n = parseFloat(document.getElementById('sipYears').value) * 12;
-            
-            let maturity = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
-            let invested = p * n;
-            let gain = maturity - invested;
-
-            document.getElementById('sipResult').innerHTML = `
-                <b>Invested Amount:</b> ₹${invested.toFixed(0)}<br>
-                <b>Estimated Wealth:</b> ₹${maturity.toFixed(0)}<br>
-                <b>Total Wealth Gain:</b> ₹${gain.toFixed(0)}
-            `;
-        }
-
-        function calculateEMI() {
-            let p = parseFloat(document.getElementById('loanAmount').value);
-            let r = parseFloat(document.getElementById('loanRate').value) / 12 / 100;
-            let n = parseFloat(document.getElementById('loanYears').value) * 12;
-
-            let emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            let totalPayment = emi * n;
-            let totalInterest = totalPayment - p;
-
-            document.getElementById('emiResult').innerHTML = `
-                <b>Monthly EMI:</b> ₹${emi.toFixed(0)}<br>
-                <b>Total Interest:</b> ₹${totalInterest.toFixed(0)}<br>
-                <b>Total Payment:</b> ₹${totalPayment.toFixed(0)}
-            `;
-        }
-    </script>
-</body>
-</html>
+</body></html>

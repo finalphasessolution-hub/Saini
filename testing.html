@@ -1,199 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Submit Form</title>
-    <style>
-        /* General Styling */
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 20px; 
-            padding: 0; 
-            background-color: #2c3e50;
-            color: #fff; 
-            text-align: center;
-            box-sizing: border-box;
-            transition: background 0.3s, color 0.3s;
-        }
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Smart Form - Jaspal Singh</title><style>
+:root{--primary:#f39c12;--dark:#0f172a;--bg:#f8fafc;--card:#ffffff;--text:#334155;--border:#e2e8f0}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--border:#334155}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+header{background:var(--dark);color:#fff;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+.logo{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo h2{margin:0;color:var(--primary);font-size:20px;font-weight:800}
+.badge{background:rgba(243,156,18,.15);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid rgba(243,156,18,.3)}
+nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+nav a{color:#cbd5e1;text-decoration:none;font-size:13px;font-weight:600}
+nav a:hover{color:var(--primary)}
+.theme-btn{background:#334155;color:#fff;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:600}
+.section{padding:50px 20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid var(--border)}
+.btn{background:var(--primary);color:#000;padding:12px 24px;border-radius:8px;font-weight:800;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+footer{background:var(--dark);color:#94a3b8;text-align:center;padding:30px 20px;margin-top:40px}
+#chat-widget{position:fixed;bottom:24px;right:24px;z-index:9999}
+#chat-btn{width:62px;height:62px;border-radius:50%;background:var(--primary);border:none;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+#chat-box{display:none;width:340px;height:460px;background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;flex-direction:column;margin-bottom:12px;border:1px solid var(--border)}
+#chat-header{background:var(--dark);color:#fff;padding:14px 16px;font-weight:700;display:flex;justify-content:space-between}
+.chat-msg{padding:8px 12px;margin:6px 10px;border-radius:10px;max-width:80%;font-size:14px}
+.user-msg{background:var(--primary);color:#000;margin-left:auto}
+.bot-msg{background:var(--bg);border:1px solid var(--border)}
+</style></head><body>
+<header><div class="logo"><h2>Jaspal Singh</h2><span class="badge">Quickinsure Partner</span></div><nav><a href="index.html">Home</a><a href="investment.html">Investment</a><a href="services.html">Services</a><a href="jaspalsingh.html">Profile</a><a href="Discussion.html">Guide</a><a href="testing.html">Form</a><a href="tools.html">Tools</a><a href="calculators.html">Calculators</a><a href="dashboard.html">Dashboard</a><a href="contact.html">Contact</a><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button></nav></header>
 
-        h1 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+<section class="section"><h1 style="text-align:center">📝 Smart Submit Form</h1>
+<div class="cards" style="grid-template-columns:1fr 1fr">
+<div class="card"><h3>🤖 AI Quick Access</h3><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">
+<button class="btn btn-outline" onclick="window.open('https://chat.openai.com/','_blank')">ChatGPT</button>
+<button class="btn btn-outline" onclick="window.open('https://gemini.google.com/','_blank')">Gemini</button>
+<button class="btn btn-outline" onclick="window.open('https://copilot.microsoft.com/','_blank')">Copilot</button>
+<button class="btn btn-outline" onclick="window.open('https://www.google.com/','_blank')">Google</button>
+</div>
+<h3 style="margin-top:20px">📸 Live Selfie Capture</h3>
+<button class="btn" id="selfie-button">Take Selfie</button>
+<video id="video" width="320" height="240" autoplay style="display:none;margin-top:10px;border-radius:8px"></video>
+<canvas id="canvas" width="320" height="240" style="display:none"></canvas>
+<img id="saved-selfie" style="display:none;width:200px;margin-top:10px;border-radius:8px;border:2px solid var(--primary)">
+</div>
+<div class="card"><h3>📋 Google Form</h3><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdV2Zv1MZl3T-lCe6HuxM8bgMUwYA3LgR_rH0RxUOaQiY6MYA/viewform?embedded=true" style="width:100%;height:600px;border:none;border-radius:8px" loading="lazy"></iframe></div>
+</div></section>
+<script>
+document.getElementById('selfie-button').addEventListener('click', function(){
+ let video=document.getElementById('video');let canvas=document.getElementById('canvas');let context=canvas.getContext('2d');
+ navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){
+   video.srcObject=stream;video.style.display='block';
+   setTimeout(()=>{
+     context.drawImage(video,0,0,320,240);video.style.display='none';canvas.style.display='block';stream.getTracks().forEach(t=>t.stop());
+     let imageData=canvas.toDataURL('image/png');localStorage.setItem('savedSelfie',imageData);let img=document.getElementById('saved-selfie');img.src=imageData;img.style.display='block';
+   },3000);
+ }).catch(()=>alert('Camera access denied!'));
+});
+if(localStorage.getItem('savedSelfie')){let img=document.getElementById('saved-selfie');img.src=localStorage.getItem('savedSelfie');img.style.display='block';}
+</script>
 
-        /* AI & Utility Buttons */
-        .ai-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+<footer><p>© 2015-2026 Jaspal Singh | +91 9958037734 | jasspunjab3088@gmail.com | Connaught Place Delhi</p></footer>
+<div id="chat-widget"><div id="chat-box"><div id="chat-header"><span>💬 Jaspal Assistant</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div><div id="chat-body" style="flex:1;padding:10px;overflow:auto"><div class="chat-msg bot-msg">Hi! Ask about Insurance, Mutual Funds, IPOs, IT Support.</div></div><div style="display:flex;padding:8px;border-top:1px solid var(--border)"><input id="chat-input" placeholder="Type..."><button class="btn" style="margin-left:6px" onclick="sendChat()">Send</button></div></div><button id="chat-btn" onclick="toggleChat()">💬</button></div>
 
-        .ai-buttons button, #selfie-button, #theme-toggle {
-            background-color: #1abc9c;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
+<script>
+function toggleTheme(){let t=document.documentElement.getAttribute('data-theme');let nt=t==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',nt);localStorage.setItem('theme',nt);let b=document.getElementById('themeBtn');if(b)b.innerText=nt==='dark'?'☀️ Light':'🌙 Dark';}
+let saved=localStorage.getItem('theme');if(saved){document.documentElement.setAttribute('data-theme',saved);}
+function toggleChat(){let b=document.getElementById('chat-box');b.style.display=b.style.display==='flex'?'none':'flex';b.style.flexDirection='column';}
+function sendChat(){let i=document.getElementById('chat-input');if(!i)return;let t=i.value.trim();if(!t)return;let b=document.getElementById('chat-body');b.innerHTML+=`<div class="chat-msg user-msg">${t}</div>`;i.value='';let reply='WhatsApp me at 9958037734 for '+t;let low=t.toLowerCase();if(low.includes('insurance'))reply='Quickinsure - 4 Wheeler, Bike, Health, Travel, Commercial Vehicle, Life instant quotes. Share RC on WhatsApp 9958037734';if(low.includes('mutual')||low.includes('sip')||low.includes('ipo')||low.includes('investment'))reply='Mutual Funds & IPOs via Composite Securities Ltd. Open Demat: live.meon.co.in/composite/individual or WhatsApp 9958037734';setTimeout(()=>{b.innerHTML+=`<div class="chat-msg bot-msg">${reply}</div>`;b.scrollTop=b.scrollHeight;},400);}
+document.addEventListener('DOMContentLoaded',()=>{let inp=document.getElementById('chat-input');if(inp)inp.addEventListener('keypress',e=>{if(e.key==='Enter')sendChat();}); let tb=document.getElementById('themeBtn'); if(tb){let s=localStorage.getItem('theme'); tb.innerText=s==='dark'?'☀️ Light':'🌙 Dark';}});
+</script>
 
-        .ai-buttons button:hover, #selfie-button:hover, #theme-toggle:hover {
-            background-color: #16a085;
-            transform: scale(1.1);
-        }
-
-        /* Form Container */
-        .form-container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            background: #34495e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-        }
-
-        iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        /* Selfie Section */
-        .selfie-container {
-            margin-top: 20px;
-        }
-
-        video, canvas, #saved-selfie {
-            display: none;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-
-        #saved-selfie {
-            display: block;
-            width: 200px;
-            height: auto;
-            margin: auto;
-            border: 3px solid white;
-        }
-
-        /* Dark Mode */
-        .dark-mode {
-            background-color: #181818;
-            color: #f1f1f1;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Smart Submit Form</h1>
-
-    <!-- AI Buttons -->
-    <div class="ai-buttons" id="button-container">
-        <button data-url="https://chat.openai.com/">ChatGPT</button>
-        <button data-url="https://gemini.google.com/">Gemini AI</button>
-        <button data-url="https://copilot.microsoft.com/">Copilot</button>
-        <button data-url="https://www.google.com/">Google Search</button>
-        <button data-url="https://weather.com/">Weather</button>
-        <button data-url="https://news.google.com/">News</button>
-        <button id="theme-toggle">Toggle Dark Mode</button>
-    </div>
-    
-    <div class="form-container">
-        <iframe id="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLSdV2Zv1MZl3T-lCe6HuxM8bgMUwYA3LgR_rH0RxUOaQiY6MYA/viewform?embedded=true" loading="lazy"></iframe>
-    </div>
-
-    <!-- Live Selfie Capture Section -->
-    <div class="selfie-container">
-        <button id="selfie-button">📸 Take a Selfie</button>
-        <video id="video" width="320" height="240" autoplay></video>
-        <canvas id="canvas" width="320" height="240"></canvas>
-        <img id="saved-selfie" src="" alt="Saved Selfie">
-    </div>
-
-    <script>
-        // Button Click Tracking & Adaptive Learning
-        document.querySelectorAll('.ai-buttons button').forEach(button => {
-            button.addEventListener('click', function() {
-                let url = this.getAttribute("data-url");
-                window.open(url, "_blank");
-
-                // Track Clicks & Sort Buttons Based on Popularity
-                let clicks = JSON.parse(localStorage.getItem("buttonClicks")) || {};
-                clicks[url] = (clicks[url] || 0) + 1;
-                localStorage.setItem("buttonClicks", JSON.stringify(clicks));
-
-                updateButtonOrder();
-            });
-        });
-
-        function updateButtonOrder() {
-            let clicks = JSON.parse(localStorage.getItem("buttonClicks")) || {};
-            let container = document.getElementById("button-container");
-            let buttons = Array.from(container.children);
-
-            buttons.sort((a, b) => (clicks[b.getAttribute("data-url")] || 0) - (clicks[a.getAttribute("data-url")] || 0));
-            buttons.forEach(btn => container.appendChild(btn));
-        }
-
-        // Apply Learning on Page Load
-        updateButtonOrder();
-
-        // Theme Toggle & Auto-Save Preference
-        const themeToggle = document.getElementById("theme-toggle");
-        themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-        });
-
-        if (localStorage.getItem("darkMode") === "true") {
-            document.body.classList.add("dark-mode");
-        }
-
-        // Selfie Capture Functionality
-        document.getElementById("selfie-button").addEventListener("click", function() {
-            let video = document.getElementById("video");
-            let canvas = document.getElementById("canvas");
-            let context = canvas.getContext("2d");
-
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function(stream) {
-                    video.srcObject = stream;
-                    video.style.display = "block";
-
-                    setTimeout(() => {
-                        context.drawImage(video, 0, 0, 320, 240);
-                        video.style.display = "none";
-                        canvas.style.display = "block";
-
-                        stream.getTracks().forEach(track => track.stop());
-
-                        let imageData = canvas.toDataURL("image/png");
-                        localStorage.setItem("savedSelfie", imageData);
-                        document.getElementById("saved-selfie").src = imageData;
-                        document.getElementById("saved-selfie").style.display = "block";
-                    }, 3000);
-                })
-                .catch(error => {
-                    alert("Camera access denied!");
-                    console.error("Error accessing camera: ", error);
-                });
-        });
-
-        // Load Saved Selfie
-        if (localStorage.getItem("savedSelfie")) {
-            document.getElementById("saved-selfie").src = localStorage.getItem("savedSelfie");
-            document.getElementById("saved-selfie").style.display = "block";
-        }
-    </script>
-
-</body>
-</html>
+</body></html>
