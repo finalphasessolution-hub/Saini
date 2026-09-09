@@ -1,0 +1,62 @@
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Jaspal Universal Live Chat - Embed on Any Website + Phone Popup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:system-ui} .code{background:#0f172a;color:#e2e8f0;padding:14px;border-radius:12px;font-size:13px;overflow:auto}</style>
+</head><body class="bg-slate-50">
+<header class="bg-white border-b sticky top-0 z-10"><div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center"><b class="text-lg">Jaspal Singh • Quickinsure Partner</b><span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">• LIVE + AI</span></div></header>
+<main class="max-w-5xl mx-auto px-4 py-8">
+<h1 class="text-3xl font-extrabold">Universal Live Chat - Kisi bhi website pe lagao, Phone pe Popup pao</h1>
+<p class="text-slate-600 mt-2">Visitor kahi bhi chat karega, tere phone pe instant notification + sound + vibration. Ollama AI auto-reply jab tu offline ho.</p>
+
+<div class="grid md:grid-cols-2 gap-6 mt-6">
+<div class="bg-white rounded-2xl p-5 shadow-sm border">
+<h2 class="font-bold">📋 Step 1: Copy Embed Code</h2>
+<div class="code mt-3" id="code1">&lt;script src="https://finalphasessolution-hub.github.io/Saini/jaspal-ollama-chat.js" data-model="llama3.2" data-phone="919958037734" data-bridge="http://localhost:3000/api/chat"&gt;&lt;/script&gt;</div>
+<button onclick="navigator.clipboard.writeText(document.getElementById('code1').innerText).then(()=>{this.innerText='✅ Copied!'; setTimeout(()=>this.innerText='Copy',1500)})" class="mt-2 bg-slate-900 text-white px-3 py-1.5 rounded-lg text-sm">Copy</button>
+<p class="text-xs text-slate-500 mt-2">Kisi bhi site ke &lt;head&gt; ya &lt;body&gt; end me paste kar do.</p>
+</div>
+<div class="bg-white rounded-2xl p-5 shadow-sm border">
+<h2 class="font-bold">🤖 Step 2: Ollama Setup (Tere PC pe)</h2>
+<div class="code mt-3">set OLLAMA_ORIGINS=*
+ollama serve
+
+# Dusri CMD me:
+ollama pull llama3.2
+# ya jo model hai:
+ollama list
+</div>
+<p class="text-xs text-slate-600 mt-2">Bridge server ke liye niche server-bridge.js dekho - CORS 100% fix.</p>
+</div>
+</div>
+
+<div class="bg-white rounded-2xl p-5 shadow-sm border mt-6">
+<h2 class="font-bold">📱 Step 3: Phone pe Popup Enable Karo</h2>
+<ol class="list-decimal ml-5 text-sm mt-2 space-y-1 text-slate-700">
+<li>Is page ko phone me khol: <b>chat-admin.html</b></li>
+<li>Add to Home Screen karo</li>
+<li>Enable Phone Popups button dabao - Notification permission allow karo</li>
+<li>Test Popup button se check karo - sound + vibration ayega</li>
+</ol>
+<p class="text-xs mt-2">Jab koi visitor kisi bhi site pe (jahan widget laga hai) chat karega, tere phone pe instant popup: "New visitor on [site]: [message]"</p>
+</div>
+
+<div class="bg-blue-600 text-white rounded-2xl p-5 mt-6">
+<h2 class="font-bold text-lg">Live Demo - Right side me 💬 button dabao 👉</h2>
+<p class="text-blue-100 text-sm">Yehi widget kisi bhi website pe aise hi dikhega. Try karo!</p>
+</div>
+
+<div class="mt-6 bg-white rounded-2xl p-5 shadow-sm border">
+<h2 class="font-bold">Bridge Server (CORS fix)</h2>
+<pre class="code mt-2">npm i express cors
+node server-bridge.js
+# Bridge: http://localhost:3000/api/chat
+# Fir widget automatically bridge use karega
+</pre>
+<a href="./server-bridge.js" download class="inline-block mt-2 text-blue-600 text-sm underline">Download server-bridge.js</a> | <a href="./jaspal-ollama-chat.js" download class="inline-block mt-2 text-blue-600 text-sm underline">Download widget JS</a>
+</div>
+</main>
+
+<!-- Load widget for demo -->
+<script src="./jaspal-ollama-chat.js" data-model="llama3.2" data-phone="919958037734" data-bridge="http://localhost:3000/api/chat"></script>
+</body></html>

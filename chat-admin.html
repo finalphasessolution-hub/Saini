@@ -1,0 +1,91 @@
+
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Jaspal Live Admin - Phone Popup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiSmFzcGFsIExpdmUgQWRtaW4iLCJzaG9ydF9uYW1lIjoiSmFzcGFsIENoYXQiLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGYxNzJhIn0=">
+<style>body{font-family:system-ui}</style>
+</head><body class="bg-slate-50">
+<header class="bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0"><b>📱 Jaspal Live Admin</b><span id="status" class="text-xs bg-green-500 px-2 py-1 rounded-full">● Online</span></header>
+<main class="max-w-3xl mx-auto p-4">
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white rounded-xl p-3 border text-center"><div id="today" class="text-xl font-extrabold">0</div><div class="text-xs text-slate-500">Today Chats</div></div>
+<div class="bg-white rounded-xl p-3 border text-center"><div id="online" class="text-xl font-extrabold">0</div><div class="text-xs text-slate-500">Online Visitors</div></div>
+<div class="bg-white rounded-xl p-3 border text-center"><div id="ai" class="text-xl font-extrabold">0</div><div class="text-xs text-slate-500">AI Handled</div></div>
+</div>
+
+<div class="bg-white rounded-xl p-4 border mt-4">
+<h2 class="font-bold">🔔 Phone Popup Setup</h2>
+<button id="enable-notif" class="mt-3 w-full bg-blue-600 text-white py-3 rounded-xl font-bold">Enable Phone Popups + Sound</button>
+<button id="test-pop" class="mt-2 w-full bg-orange-500 text-white py-2.5 rounded-xl font-bold">Test Popup on My Phone 🔔</button>
+<div class="mt-3 flex gap-2">
+<select id="model" class="border rounded-lg px-3 py-2 text-sm flex-1"><option>llama3.2</option><option>mistral</option><option>phi3</option><option>gemma2</option><option>qwen2.5</option></select>
+<label class="flex items-center gap-2 text-sm"><input type="checkbox" id="ai-toggle" checked> AI Auto-Reply</label>
+</div>
+<p class="text-xs text-slate-500 mt-2">Tip: Is page ko Home Screen pe Add karo - PWA ban jayega, travel me bhi popup ayega.</p>
+</div>
+
+<div class="bg-white rounded-xl p-4 border mt-4">
+<h2 class="font-bold flex justify-between">Live Chats <button id="clear" class="text-xs text-red-600">Clear</button></h2>
+<div id="chats" class="mt-3 space-y-2 max-h-[50vh] overflow-auto"></div>
+</div>
+
+<audio id="beep" preload="auto"><source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav"></audio>
+</main>
+<script>
+let today=0, aiCount=0;
+const chatsEl=document.getElementById('chats');
+const beep=document.getElementById('beep');
+
+function notify(title, body){
+  if(Notification.permission==='granted'){
+    const n=new Notification(title,{body, icon:'https://finalphasessolution-hub.github.io/Saini/live_portfolio_ui_card.webp'});
+    n.onclick=()=>window.focus();
+  }
+  // Vibration + sound
+  if(navigator.vibrate) navigator.vibrate([200,100,200]);
+  try{ beep.currentTime=0; beep.play().catch(()=>{}); }catch(e){}
+  // Fallback alert sound via Web Audio
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(); o.frequency.value=880; o.connect(ctx.destination); o.start(); setTimeout(()=>o.stop(), 300);
+  }catch(e){}
+}
+
+document.getElementById('enable-notif').onclick=async()=>{
+  const p=await Notification.requestPermission();
+  if(p==='granted'){ notify('✅ Popups Enabled','Ab koi bhi visitor chat karega toh yaha popup + sound ayega'); document.getElementById('enable-notif').innerText='✅ Enabled'; }
+  else alert('Notification allow karo phone me');
+};
+
+document.getElementById('test-pop').onclick=()=>{
+  const payload={page:'https://finalphasessolution-hub.github.io/Saini/', text:'Hello Jaspal, Car insurance quote chahiye DL8C', visitor:'Test Visitor', time:new Date().toISOString()};
+  handleNew(payload, true);
+};
+
+function handleNew(data, isTest){
+  today++; document.getElementById('today').innerText=today;
+  if(!isTest) aiCount++; document.getElementById('ai').innerText=aiCount;
+  const div=document.createElement('div');
+  div.className='border rounded-xl p-3 bg-slate-50';
+  div.innerHTML=`<div class="flex justify-between text-xs text-slate-500"><span>${data.visitor} • ${new Date(data.time).toLocaleTimeString()}</span><span class="truncate max-w-[140px]">${data.page}</span></div><div class="mt-1 text-sm font-medium">${data.text}</div><div class="mt-2 flex gap-2"><a href="https://wa.me/919958037734?text=${encodeURIComponent('Lead from '+data.page+': '+data.text)}" target="_blank" class="bg-green-600 text-white text-xs px-3 py-1.5 rounded-full">Reply on WhatsApp</a><button class="text-xs border px-3 py-1.5 rounded-full" onclick="this.parentElement.parentElement.remove()">Dismiss</button></div>`;
+  chatsEl.prepend(div);
+  notify(`New visitor on ${new URL(data.page).hostname}`, `${data.visitor}: ${data.text}`);
+}
+
+document.getElementById('clear').onclick=()=>{ chatsEl.innerHTML=''; today=0; document.getElementById('today').innerText=0; localStorage.clear(); };
+
+// Listen BroadcastChannel + storage
+try{
+  const bc=new BroadcastChannel('jaspal_chat');
+  bc.onmessage=e=>handleNew(e.data,false);
+}catch(e){}
+window.addEventListener('storage', e=>{
+  if(e.key && e.key.startsWith('jaspal_chat_')){
+    try{ handleNew(JSON.parse(e.newValue), false); }catch(_){}
+  }
+});
+
+// Simulate online count
+setInterval(()=>{ document.getElementById('online').innerText=Math.floor(Math.random()*3+1); }, 3000);
+</script>
+</body></html>

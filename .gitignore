@@ -1,0 +1,12 @@
+node_modules/ 
+.agents/ 
+.cursor/ 
+image/ 
+images/ 
+movies/ 
+run_gemini.py 
+run_ollama.py 
+voice_assistant.py 
+Start_Gemini.bat 
+Start_Ollama.bat 
+Start_Voice.bat 
