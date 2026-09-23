@@ -7,7 +7,7 @@ const http = require('http');
 
 const OLLAMA_URL = 'http://127.0.0.1:11434/api/chat';
 const MODEL = 'llama3.2';
-const PORT = 3000;
+const PORT = 3001;
 
 const SYSTEM_PROMPT = `You are Jaspal Singh's AI Assistant - IRDAI Certified Insurance & Investment Expert at Connaught Place, Delhi.
 Friendly, helpful, like ChatGPT but for Insurance/Mutual Funds/IPO.
